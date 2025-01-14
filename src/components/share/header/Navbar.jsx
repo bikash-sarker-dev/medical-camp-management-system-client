@@ -1,149 +1,135 @@
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Button,
   Collapse,
   IconButton,
   Navbar,
   Typography,
 } from "@material-tailwind/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const StickyNavbar = () => {
-  const [openNav, setOpenNav] = useState(false);
-  useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
-  }, []);
-  const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+function NavList() {
+  return (
+    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center">
-          Pages
-        </a>
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Home
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Available Camps
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
+        <Link
+          to="/join"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Join us
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2 "
+        >
+          Login
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2"
+        >
+          Register
+        </Link>
       </Typography>
     </ul>
   );
-  return (
-    <div className="dev">
-      <div className="container">
-        <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
-          <div className="flex items-center justify-between text-blue-gray-900">
-            <Typography
-              as="a"
-              href="#"
-              className="mr-4 cursor-pointer py-1.5 font-medium"
-            >
-              Material Tailwind
-            </Typography>
-            <div className="flex items-center gap-4">
-              <div className="mr-4 hidden lg:block">{navList}</div>
-              <div className="flex items-center gap-x-1">
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Log In</span>
-                </Button>
-                <Button
-                  variant="gradient"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Sign in</span>
-                </Button>
-              </div>
-              <IconButton
-                variant="text"
-                className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-                ripple={false}
-                onClick={() => setOpenNav(!openNav)}
-              >
-                {openNav ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </IconButton>
-            </div>
-          </div>
+}
 
-          <Collapse open={openNav}>
-            {navList}
-            <div className="flex items-center gap-x-1">
-              <Button fullWidth variant="text" size="sm" className="">
-                <span>Log In</span>
-              </Button>
-              <Button fullWidth variant="gradient" size="sm" className="">
-                <span>Sign in</span>
-              </Button>
-            </div>
-          </Collapse>
-        </Navbar>
-      </div>
+export default function NavbarSimple() {
+  const [openNav, setOpenNav] = React.useState(false);
+
+  const handleWindowResize = () =>
+    window.innerWidth >= 960 && setOpenNav(false);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  return (
+    <div className="bg-camp-primary">
+      <Navbar className="mx-auto max-w-screen-xl bg-camp-primary border-none bg-opacity-100 shadow-none px-6 py-3 ">
+        <div className="flex items-center justify-between text-blue-gray-900">
+          <Typography
+            to="/"
+            as="a"
+            variant="h6"
+            className="mr-4 cursor-pointer py-1.5"
+          >
+            <img
+              className="h-14"
+              src="https://img.icons8.com/?size=100&id=R8C2mZCro3DR&format=png&color=000000"
+              alt=""
+            />
+          </Typography>
+          <div className="hidden lg:block">
+            <NavList />
+          </div>
+          <IconButton
+            variant="text"
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            ripple={false}
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
+          </IconButton>
+        </div>
+        <Collapse open={openNav}>
+          <NavList />
+        </Collapse>
+      </Navbar>
     </div>
   );
-};
-
-export default StickyNavbar;
+}

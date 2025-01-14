@@ -1,12 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import StickyNavbar from "../components/share/header/Navbar";
+import FooterWithSocialLinks from "../components/share/footer/Footer";
+import NavbarSimple from "../components/share/header/Navbar";
 
 const RootLayout = () => {
   return (
     <div>
-      <StickyNavbar />
+      <NavbarSimple />
       <Outlet />
+      <FooterWithSocialLinks />
     </div>
   );
 };
