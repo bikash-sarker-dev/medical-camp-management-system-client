@@ -1,15 +1,19 @@
+import Lottie from "lottie-react";
 import React from "react";
+import medicalToolsLottifile from "../../../assets/lottifile/medicalTools.json";
 
 const Research = () => {
   return (
     <div className="py-28">
       <div className="container">
-        <div className="lg:flex">
+        <div className="lg:flex gap-2">
           <div className="md:flex-1">
-            <img
-              src="https://ezovion.com/wp-content/uploads/2022/11/Clinics.png"
-              alt=""
+            <Lottie
+              className="lg:h-[500px]"
+              animationData={medicalToolsLottifile}
+              loop={true}
             />
+            ;
           </div>
           <div className="md:flex-1">
             <h3 className="font-poppins text-3xl font-semibold">

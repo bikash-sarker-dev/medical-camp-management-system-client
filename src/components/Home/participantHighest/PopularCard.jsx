@@ -20,9 +20,9 @@ export default function BookingCard({ camp }) {
   const word = Description.split(" ").slice(0, 15).join(" ");
 
   return (
-    <Card className="w-full  shadow-lg bg-camp-default">
-      <CardHeader floated={false} color="blue-gray">
-        <img src={Image} alt="ui/ux review check" />
+    <Card className="w-full  shadow-sm bg-camp-default">
+      <CardHeader floated={false} color="blue">
+        <img className="" src={Image} alt="ui/ux review check" />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
       </CardHeader>
       <CardBody>

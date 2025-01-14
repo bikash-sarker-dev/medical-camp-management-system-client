@@ -17,3 +17,18 @@ body {
   max-width: 1170px;
   margin: 0 auto;
 }
+
+.testimonials h2 {
+  color: #f7fafd;
+}
+
+.testimonials p {
+  color: #b8bec2;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: -0px !important;
+}
