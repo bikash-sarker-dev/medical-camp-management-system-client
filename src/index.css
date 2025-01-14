@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Readex%20Pro:700|Readex%20Pro:400");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Readex Pro";
+  font-weight: 400;
+}
