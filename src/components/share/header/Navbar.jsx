@@ -57,7 +57,7 @@ function NavList() {
         className="p-1 font-medium"
       >
         <Link
-          to="/"
+          to="/login"
           className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2 "
         >
           Login
@@ -70,7 +70,7 @@ function NavList() {
         className="p-1 font-medium"
       >
         <Link
-          to="/"
+          to="/register"
           className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2"
         >
           Register

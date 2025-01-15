@@ -4,6 +4,8 @@ import RootLayout from "../layouts/RootLayout";
 import AvailableCampPage from "../pages/AvailableCampPage";
 import DetailsPage from "../pages/DetailsPage";
 import HomePage from "../pages/HomePage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/availableCamp",
         element: <AvailableCampPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       },
     ],
   },
