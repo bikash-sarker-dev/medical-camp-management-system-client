@@ -1,3 +1,4 @@
+import { Button } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -30,6 +31,11 @@ const ParticipantHighest = () => {
             {popularCamps.map((camp) => (
               <BookingCard key={camp._id} camp={camp} />
             ))}
+          </div>
+          <div className="text-center my-12">
+            <Button className="text-lg font-poppins bg-camp-primary px-10">
+              See All More
+            </Button>
           </div>
         </div>
       </div>
