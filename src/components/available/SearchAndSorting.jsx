@@ -10,20 +10,28 @@ import {
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const SearchAndSorting = ({ setCamps, camps }) => {
+const SearchAndSorting = ({ setCamps }) => {
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
   const axiosPublic = useAxiosPublic();
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
 
+  const handleChangeSorting = (e) => {
+    setSort(e.target);
+  };
+  console.log(sort);
+
   useEffect(() => {
     let dataSearch = async () => {
-      const res = await axiosPublic.get(`/search?search=${search}`);
+      const res = await axiosPublic.get(
+        `/search?search=${search}&sort=${sort}`
+      );
       setCamps(res.data);
     };
     dataSearch();
-  }, [search]);
+  }, [search, sort]);
 
   return (
     <div className="bg-camp-info p-5 rounded-lg">
@@ -58,21 +66,21 @@ const SearchAndSorting = ({ setCamps, camps }) => {
           </div>
         </div>
         <div className="flex gap-10">
-          <div className="w-72 text-camp-background">
+          <div className="w-72 ">
             <Select
               color="blue"
-              className=" text-camp-background"
+              className=" text-camp-text"
               label="Sorting Camps"
+              value={sort}
+              onChange={(val) => setSort(val)}
               animate={{
                 mount: { y: 0 },
                 unmount: { y: 25 },
               }}
             >
-              <Option>Material Tailwind HTML</Option>
-              <Option>Material Tailwind React</Option>
-              <Option>Material Tailwind Vue</Option>
-              <Option>Material Tailwind Angular</Option>
-              <Option>Material Tailwind Svelte</Option>
+              <Option value="m-des">Most Registered</Option>
+              <Option value="camp-free-des">Camp free Highest</Option>
+              <Option value="camp-free-acs">Camp free lowest</Option>
             </Select>
           </div>
           <div>
