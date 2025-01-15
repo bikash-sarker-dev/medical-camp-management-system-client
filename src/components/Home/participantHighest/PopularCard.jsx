@@ -6,6 +6,7 @@ import {
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function BookingCard({ camp }) {
   const {
@@ -45,9 +46,11 @@ export default function BookingCard({ camp }) {
         </Typography>
       </CardBody>
       <CardFooter className="pt-1  ">
-        <Button className="bg-camp-accent" size="lg" fullWidth={true}>
-          Details
-        </Button>
+        <Link to={`/details/${_id}`}>
+          <Button className="bg-camp-accent" size="lg" fullWidth={true}>
+            Details
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

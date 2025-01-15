@@ -31,7 +31,7 @@ function NavList() {
         className="p-1 font-medium"
       >
         <Link
-          to="/"
+          to="/availableCamp"
           className="flex items-center text-camp-background text-base transition-colors"
         >
           Available Camps
