@@ -6,28 +6,46 @@ import {
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import moment from "moment";
+import { IoTimeOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-export default function CardDefault() {
+export default function CardDefault({ camp }) {
+  const {
+    _id,
+    CampName,
+    Image,
+    DateAndTime,
+    HealthcareProfessional,
+    Description,
+    CampFees,
+  } = camp || {};
+  const word = Description.split(" ").slice(0, 16).join(" ");
   return (
-    <Card className="mt-6 w-96">
-      <CardHeader color="blue-gray" className="relative h-56">
-        <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-          alt="card-image"
-        />
+    <Card className="mt-6 bg-camp-default">
+      <CardHeader color="blue" className="relative h-56">
+        <img src={Image} alt="card-image" />
       </CardHeader>
       <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-          UI/UX Review Check
+        <Typography variant="h5" color="blue" className="mb-2">
+          {CampName}
         </Typography>
-        <Typography>
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </Typography>
+        <div className="flex justify-between items-center my-3">
+          <p className="flex  gap-2">
+            <IoTimeOutline className="text-xl" />
+            <span> {moment(DateAndTime).format("LL")}</span>
+          </p>
+          <p className="">
+            <span> CampFree : {CampFees}</span>
+          </p>
+        </div>
+
+        <Typography>{word}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button>Read More</Button>
+        <Link to={`/details/${_id}`}>
+          <Button className="bg-camp-accent px-10">Details</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

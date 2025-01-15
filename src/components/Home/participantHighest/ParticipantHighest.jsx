@@ -11,7 +11,7 @@ const ParticipantHighest = () => {
   const { data: popularCamps = [] } = useQuery({
     queryKey: ["camps"],
     queryFn: async () => {
-      let res = await axiosPublic.get("/camps");
+      let res = await axiosPublic.get("/camps/popular");
       return res.data;
     },
   });
