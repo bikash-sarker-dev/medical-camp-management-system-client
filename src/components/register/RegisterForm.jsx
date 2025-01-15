@@ -7,12 +7,14 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import registerImg from "../../assets/images/register-medical.png";
 import useAuth from "../../hooks/useAuth";
 
 const RegisterForm = () => {
   const { newAccountCreate } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,6 +29,8 @@ const RegisterForm = () => {
         const user = userCredential.user;
         console.log(user);
         reset();
+        toast.success("successfully register . Please login ");
+        navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;

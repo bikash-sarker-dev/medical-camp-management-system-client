@@ -1,10 +1,14 @@
 import { Button, Card, Input, Typography } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginImg from "../../assets/images/login-medical.png";
+import useAuth from "../../hooks/useAuth";
 
 const LoginForm = () => {
+  const { accountLogin } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,7 +16,17 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    accountLogin(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Successfully login . welcome Home page.");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 
   return (
@@ -70,7 +84,7 @@ const LoginForm = () => {
                 </div>
 
                 <Button type="submit" className="mt-6 bg-camp-accent" fullWidth>
-                  Register
+                  login
                 </Button>
                 <Typography
                   color="gray"
