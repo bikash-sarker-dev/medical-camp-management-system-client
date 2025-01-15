@@ -9,16 +9,29 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import registerImg from "../../assets/images/register-medical.png";
+import useAuth from "../../hooks/useAuth";
 
 const RegisterForm = () => {
+  const { newAccountCreate } = useAuth();
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    newAccountCreate(data.email, data.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        reset();
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 
   return (

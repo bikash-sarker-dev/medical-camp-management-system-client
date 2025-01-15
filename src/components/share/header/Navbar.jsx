@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 function NavList() {
   return (
@@ -81,6 +82,8 @@ function NavList() {
 }
 
 export default function NavbarSimple() {
+  const { name } = useAuth();
+  console.log(name);
   const [openNav, setOpenNav] = React.useState(false);
 
   const handleWindowResize = () =>
