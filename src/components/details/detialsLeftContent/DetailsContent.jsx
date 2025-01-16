@@ -1,13 +1,37 @@
-import { Button } from "@material-tailwind/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  IconButton,
+  Input,
+  Radio,
+  Typography,
+} from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const DetailsContent = () => {
+  const { user } = useAuth();
+  const [open, setOpen] = React.useState(false);
   const axiosPublic = useAxiosPublic();
   const { id } = useParams();
-  console.log(id);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const handleOpen = () => setOpen(!open);
+
+  const onSubmit = (data) => console.log(data);
 
   const { data: details = {} } = useQuery({
     queryKey: ["details"],
@@ -19,7 +43,7 @@ const DetailsContent = () => {
 
   const {
     CampName,
-    CampFree,
+    CampFees,
     DateAndTime,
     Description,
     HealthcareProfessional,
@@ -28,7 +52,6 @@ const DetailsContent = () => {
     ParticipantCount,
   } = details || {};
 
-  console.log(details);
   return (
     <section className="">
       <div
@@ -65,12 +88,291 @@ const DetailsContent = () => {
           </div>
 
           <div className="mt-6">
-            <Button className="text-lg px-10 bg-camp-accent mt-18">
+            <Button
+              onClick={handleOpen}
+              variant="gradient"
+              className="text-lg px-10 bg-camp-accent mt-18"
+            >
               Join Camp
             </Button>
           </div>
         </div>
       </div>
+      <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
+        <DialogHeader className="relative m-0 block">
+          <Typography variant="h4" color="blue-gray">
+            Join in Your Camp
+          </Typography>
+          <Typography className="mt-1 font-normal text-gray-600">
+            Keep your records up-to-date and organized.
+          </Typography>
+          <IconButton
+            size="sm"
+            variant="text"
+            className="!absolute right-3.5 top-3.5"
+            onClick={handleOpen}
+          >
+            <XMarkIcon className="h-4 w-4 stroke-2" />
+          </IconButton>
+        </DialogHeader>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogBody className="space-y-3">
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Camp Name
+                </Typography>
+                <Input
+                  {...register("campName")}
+                  color="gray"
+                  size="lg"
+                  value={CampName}
+                  disabled
+                  placeholder="Camp Name"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Camp Fees
+                </Typography>
+                <Input
+                  {...register("campFees")}
+                  color="gray"
+                  size="lg"
+                  type="number"
+                  value={CampFees}
+                  disabled
+                  placeholder="Camp Fees"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Location
+                </Typography>
+                <Input
+                  {...register("location")}
+                  color="gray"
+                  size="lg"
+                  value={Location}
+                  disabled
+                  placeholder="Location"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Healthcare Professional Name
+                </Typography>
+                <Input
+                  {...register("healthcareProfessionalName")}
+                  color="gray"
+                  size="lg"
+                  value={HealthcareProfessional}
+                  disabled
+                  placeholder="Healthcare Professional Name("
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Participant Name
+                </Typography>
+                <Input
+                  {...register("participantName")}
+                  color="gray"
+                  size="lg"
+                  value={user?.displayName}
+                  disabled
+                  placeholder="Participant Name"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Participant Email
+                </Typography>
+                <Input
+                  {...register("participantEmail")}
+                  color="gray"
+                  size="lg"
+                  value={user?.email}
+                  disabled
+                  placeholder="Participant email"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Age
+                </Typography>
+                <Input
+                  {...register("age")}
+                  color="gray"
+                  size="lg"
+                  type="number"
+                  placeholder="Age"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Phone Number
+                </Typography>
+                <Input
+                  {...register("phoneNumber")}
+                  color="gray"
+                  size="lg"
+                  placeholder="Phone Number"
+                  className="placeholder:opacity-100 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="mb-2 text-left font-medium"
+              >
+                Emergency Contact
+              </Typography>
+              <Input
+                {...register("emergencyContact")}
+                color="gray"
+                size="lg"
+                placeholder="Emergency Contact"
+                className="placeholder:opacity-100 focus:!border-t-gray-900"
+                containerProps={{
+                  className: "!min-w-full",
+                }}
+                labelProps={{
+                  className: "hidden",
+                }}
+              />
+            </div>
+            <div>
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className=" text-left font-medium"
+              >
+                Gender
+              </Typography>
+              <div className="flex gap-8">
+                <Radio
+                  label="Male"
+                  value="male"
+                  color="blue"
+                  {...register("gender")}
+                />
+                <Radio
+                  label="Female"
+                  value="female"
+                  color="blue"
+                  {...register("gender")}
+                />
+              </div>
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              type="submit"
+              className="ml-auto w-full bg-camp-accent"
+              onClick={handleOpen}
+            >
+              Join Confirm
+            </Button>
+          </DialogFooter>
+        </form>
+      </Dialog>
     </section>
   );
 };
