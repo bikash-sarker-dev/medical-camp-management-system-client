@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
@@ -30,8 +31,25 @@ const DetailsContent = () => {
   } = useForm();
 
   const handleOpen = () => setOpen(!open);
+  const doc = {
+    title: "Record of a Shriveled Datum",
+    content: "No bytes, no problem. Just insert a document, in MongoDB",
+  };
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    const res = await axiosPublic.post("/join-camp", { ...data, campId: id });
+    console.log(res.data);
+    if (res.data.insertedId) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `You join in ${data.CampName} camp`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
   const { data: details = {} } = useQuery({
     queryKey: ["details"],
@@ -42,6 +60,7 @@ const DetailsContent = () => {
   });
 
   const {
+    _id,
     CampName,
     CampFees,
     DateAndTime,
@@ -53,7 +72,7 @@ const DetailsContent = () => {
   } = details || {};
 
   return (
-    <section className="">
+    <section className="mb-16">
       <div
         data-aos="fade-up"
         data-aos-duration="2000"
@@ -90,7 +109,6 @@ const DetailsContent = () => {
           <div className="mt-6">
             <Button
               onClick={handleOpen}
-              variant="gradient"
               className="text-lg px-10 bg-camp-accent mt-18"
             >
               Join Camp
