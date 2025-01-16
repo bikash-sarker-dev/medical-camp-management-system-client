@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddCamp from "../dashboard/addCamp/AddCamp";
+import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
 import AvailableCampPage from "../pages/AvailableCampPage";
@@ -32,6 +34,16 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterPage />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/add-camp",
+        element: <AddCamp />,
       },
     ],
   },
