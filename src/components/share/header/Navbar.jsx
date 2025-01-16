@@ -8,8 +8,10 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import ProfileAvatar from "./ProfileAvatar";
 
 function NavList() {
+  const { user } = useAuth();
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -51,39 +53,45 @@ function NavList() {
           Join us
         </Link>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/login"
-          className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2 "
-        >
-          Login
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/register"
-          className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2"
-        >
-          Register
-        </Link>
-      </Typography>
+      {user && user?.email ? (
+        <>
+          <ProfileAvatar />
+        </>
+      ) : (
+        <>
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-medium"
+          >
+            <Link
+              to="/login"
+              className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2 "
+            >
+              Login
+            </Link>
+          </Typography>
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-medium"
+          >
+            <Link
+              to="/register"
+              className="flex items-center text-camp-background text-base transition-colors bg-camp-accent px-5 rounded-md py-2"
+            >
+              Register
+            </Link>
+          </Typography>
+        </>
+      )}
     </ul>
   );
 }
 
 export default function NavbarSimple() {
-  const { name } = useAuth();
-  console.log(name);
   const [openNav, setOpenNav] = React.useState(false);
 
   const handleWindowResize = () =>
