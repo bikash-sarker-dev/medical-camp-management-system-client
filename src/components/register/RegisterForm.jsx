@@ -5,11 +5,13 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
+import { updateProfile } from "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import registerImg from "../../assets/images/register-medical.png";
+import { auth } from "../../firebase/firebase.config";
 import useAuth from "../../hooks/useAuth";
 
 const RegisterForm = () => {
@@ -27,10 +29,18 @@ const RegisterForm = () => {
     newAccountCreate(data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        const userName = { displayName: data.username };
+        updateProfile(auth.currentUser, userName)
+          .then(() => {
+            console.log("update", user);
+            toast.success("successfully register . Please login ");
+            navigate("/login");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
         reset();
-        toast.success("successfully register . Please login ");
-        navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
