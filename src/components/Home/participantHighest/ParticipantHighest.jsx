@@ -16,8 +16,6 @@ const ParticipantHighest = () => {
     },
   });
 
-  console.log(popularCamps);
-
   return (
     <div className="mb-32 mt-10">
       <div className="container">

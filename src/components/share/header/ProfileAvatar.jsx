@@ -17,9 +17,8 @@ const ProfileAvatar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const closeMenu = () => setIsMenuOpen(false);
 
-  const firstCharacter = user?.displayName.split("")[0];
+  const firstCharacter = user?.displayName?.split("")[0];
   const colorCode = `#${Math.floor(Math.random() * 1000000)}`;
-  console.log(colorCode);
 
   const handleLogOut = () => {
     accountLogOut()

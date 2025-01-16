@@ -13,9 +13,11 @@ import { toast } from "react-toastify";
 import registerImg from "../../assets/images/register-medical.png";
 import { auth } from "../../firebase/firebase.config";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const RegisterForm = () => {
   const { newAccountCreate } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -32,9 +34,15 @@ const RegisterForm = () => {
         const userName = { displayName: data.username };
         updateProfile(auth.currentUser, userName)
           .then(() => {
-            console.log("update", user);
-            toast.success("successfully register . Please login ");
-            navigate("/login");
+            const userInfo = {
+              name: data.username,
+              email: data.email,
+            };
+            axiosPublic.post("/user", userInfo).then((res) => {
+              console.log(res.data);
+              toast.success("successfully register . Please login ");
+              navigate("/login");
+            });
           })
           .catch((error) => {
             console.log(error);
