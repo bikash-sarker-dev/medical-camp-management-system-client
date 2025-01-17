@@ -18,8 +18,17 @@ import {
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import useOrganizer from "../hooks/useOrganizer";
+import LoadingPage from "../pages/LoadingPage";
 
 const DashboardLayout = () => {
+  const [isOrganize, isLoading] = useOrganizer();
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  console.log(isOrganize);
   return (
     <div>
       <ToastContainer
@@ -44,60 +53,105 @@ const DashboardLayout = () => {
                 alt=""
               />
               <Typography variant="h5" className="text-camp-background">
-                Admin / Participant
+                {isOrganize ? "Organizer" : "Participant"}
               </Typography>
             </div>
-            <List className="text-camp-background text-[15px]">
-              <ListItem>
-                <ListItemPrefix>
-                  <PresentationChartBarIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Dashboard
-              </ListItem>
-              <Link to="/dashboard/add-camp">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ShoppingBagIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  Add A Camp
-                </ListItem>
-              </Link>
-              <Link to="/dashboard/all-participant">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ShoppingBagIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  All Participant
-                </ListItem>
-              </Link>
-              <ListItem>
-                <ListItemPrefix>
-                  <InboxIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Manage Camps
-                <ListItemSuffix>
-                  <Chip value="14" size="sm" className="rounded-full" />
-                </ListItemSuffix>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <UserCircleIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Organizer Profile
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <Cog6ToothIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Manage Registered Camps
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <PowerIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Log Out
-              </ListItem>
-            </List>
+            {isOrganize ? (
+              <>
+                <List className="text-camp-background text-[15px]">
+                  <ListItem>
+                    <ListItemPrefix>
+                      <PresentationChartBarIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Dashboard
+                  </ListItem>
+                  <Link to="/dashboard/add-camp">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <ShoppingBagIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Add A Camp
+                    </ListItem>
+                  </Link>
+                  <Link to="/dashboard/all-participant">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <ShoppingBagIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      All Participant
+                    </ListItem>
+                  </Link>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <InboxIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Manage Camps
+                    <ListItemSuffix>
+                      <Chip value="14" size="sm" className="rounded-full" />
+                    </ListItemSuffix>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <UserCircleIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Organizer Profile
+                  </ListItem>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <Cog6ToothIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Manage Registered Camps
+                  </ListItem>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <PowerIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Log Out
+                  </ListItem>
+                </List>
+              </>
+            ) : (
+              <>
+                <List className="text-camp-background text-[15px]">
+                  <ListItem>
+                    <ListItemPrefix>
+                      <PresentationChartBarIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Analytics
+                  </ListItem>
+                  <Link to="/dashboard/all-participant">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <ShoppingBagIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Registered Camps
+                    </ListItem>
+                  </Link>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <InboxIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Payment History
+                    <ListItemSuffix>
+                      <Chip value="14" size="sm" className="rounded-full" />
+                    </ListItemSuffix>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <UserCircleIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Participant Profile
+                  </ListItem>
+
+                  <ListItem>
+                    <ListItemPrefix>
+                      <PowerIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Log Out
+                  </ListItem>
+                </List>
+              </>
+            )}
           </Card>
         </div>
         <div className="w-full">
