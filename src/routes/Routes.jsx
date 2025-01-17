@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AddCamp from "../dashboard/addCamp/AddCamp";
 import AllParticipant from "../dashboard/allUser/AllParitcipant";
 import ManageCamps from "../dashboard/ManageCams/ManageCams";
+import ManageRegisteredCamps from "../dashboard/manageRegisteredCapms/ManageRegisteredCapms";
+import ManageProfile from "../dashboard/MangeProfile/ManageProfile";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-camps",
         element: <ManageCamps />,
+      },
+      {
+        path: "/dashboard/manage-registered-camps",
+        element: <ManageRegisteredCamps />,
+      },
+      {
+        path: "/dashboard/manage-profile",
+        element: <ManageProfile />,
       },
     ],
   },

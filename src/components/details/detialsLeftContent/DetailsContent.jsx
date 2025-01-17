@@ -38,7 +38,13 @@ const DetailsContent = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    const res = await axiosPublic.post("/join-camp", { ...data, campId: id });
+    let joinInfo = {
+      ...data,
+      campId: id,
+      PaymentStatus: "unPaid",
+      Confirmation: "pending",
+    };
+    const res = await axiosPublic.post("/join-camp", joinInfo);
     console.log(res.data);
     if (res.data.insertedId) {
       Swal.fire({
