@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddCamp from "../dashboard/addCamp/AddCamp";
+import AllParticipant from "../dashboard/allUser/AllParitcipant";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-camp",
         element: <AddCamp />,
+      },
+      {
+        path: "/dashboard/all-participant",
+        element: <AllParticipant />,
       },
     ],
   },

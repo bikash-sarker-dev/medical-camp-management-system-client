@@ -17,10 +17,23 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const DashboardLayout = () => {
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="flex gap-5">
         <div className="">
           <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl bg-camp-primary shadow-blue-gray-900/5">
@@ -47,6 +60,14 @@ const DashboardLayout = () => {
                     <ShoppingBagIcon className="h-5 w-5" />
                   </ListItemPrefix>
                   Add A Camp
+                </ListItem>
+              </Link>
+              <Link to="/dashboard/all-participant">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ShoppingBagIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  All Participant
                 </ListItem>
               </Link>
               <ListItem>

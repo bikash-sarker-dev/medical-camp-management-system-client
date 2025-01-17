@@ -38,7 +38,7 @@ const RegisterForm = () => {
               name: data.username,
               email: data.email,
             };
-            axiosPublic.post("/user", userInfo).then((res) => {
+            axiosPublic.post("/users", userInfo).then((res) => {
               console.log(res.data);
               toast.success("successfully register . Please login ");
               navigate("/login");
