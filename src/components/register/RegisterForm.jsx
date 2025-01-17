@@ -41,7 +41,7 @@ const RegisterForm = () => {
             axiosPublic.post("/users", userInfo).then((res) => {
               console.log(res.data);
               toast.success("successfully register . Please login ");
-              navigate("/login");
+              navigate("/");
             });
           })
           .catch((error) => {

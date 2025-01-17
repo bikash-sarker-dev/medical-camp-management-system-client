@@ -2,7 +2,9 @@ import { Button } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaUser } from "react-icons/fa";
+import { RiDeleteBin5Line } from "react-icons/ri";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import HeaderDashboard from "../sharedashboard/HeaderDashboard";
 import useSecureAxios from "./../../hooks/useSecureAxios";
 
@@ -24,6 +26,33 @@ const AllParticipant = () => {
       refetch();
       toast.success(`You are name ${participant.name} Organizer Successfully`);
     }
+  };
+
+  const handleDeleteParticipant = async (participant) => {
+    console.log(participant);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await secureAxios.delete(
+          `/users/participant/${participant._id}`
+        );
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
   return (
     <div>
@@ -91,12 +120,14 @@ const AllParticipant = () => {
                     </p>
                   </td>
                   <td className="p-4 border-b border-blue-gray-50">
-                    <a
+                    <Button
+                      onClick={() => handleDeleteParticipant(participant)}
+                      size="sm"
                       href="#"
-                      className="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900"
+                      className="block font-sans text-md bg-red-500 antialiased font-medium leading-normal text-camp-background "
                     >
-                      Edit
-                    </a>
+                      <RiDeleteBin5Line />
+                    </Button>
                   </td>
                 </tr>
               ))}

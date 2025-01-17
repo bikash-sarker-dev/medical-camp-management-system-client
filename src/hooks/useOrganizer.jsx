@@ -10,7 +10,7 @@ const useOrganizer = () => {
     queryKey: ["organize"],
     queryFn: async () => {
       const res = await secureAxios.get(`/users/organizer/${user.email}`);
-      return res.data;
+      return res.data.organizer;
     },
   });
   return [isOrganize, isLoading];

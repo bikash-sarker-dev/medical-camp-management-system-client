@@ -16,17 +16,31 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import useOrganizer from "../hooks/useOrganizer";
 import LoadingPage from "../pages/LoadingPage";
+import useAuth from "./../hooks/useAuth";
 
 const DashboardLayout = () => {
   const [isOrganize, isLoading] = useOrganizer();
+  const { accountLogOut } = useAuth();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <LoadingPage />;
   }
+
+  const handleLogOutFromDashboard = () => {
+    accountLogOut()
+      .then(() => {
+        toast.success("You are Dashboard from logOut");
+        navigate("/login");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   console.log(isOrganize);
   return (
@@ -81,15 +95,15 @@ const DashboardLayout = () => {
                       All Participant
                     </ListItem>
                   </Link>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <InboxIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Manage Camps
-                    <ListItemSuffix>
-                      <Chip value="14" size="sm" className="rounded-full" />
-                    </ListItemSuffix>
-                  </ListItem>
+                  <Link to="/dashboard/manage-camps">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <ShoppingBagIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Manage Camps
+                    </ListItem>
+                  </Link>
+
                   <ListItem>
                     <ListItemPrefix>
                       <UserCircleIcon className="h-5 w-5" />
@@ -102,7 +116,7 @@ const DashboardLayout = () => {
                     </ListItemPrefix>
                     Manage Registered Camps
                   </ListItem>
-                  <ListItem>
+                  <ListItem onClick={handleLogOutFromDashboard}>
                     <ListItemPrefix>
                       <PowerIcon className="h-5 w-5" />
                     </ListItemPrefix>
@@ -143,7 +157,7 @@ const DashboardLayout = () => {
                     Participant Profile
                   </ListItem>
 
-                  <ListItem>
+                  <ListItem onClick={handleLogOutFromDashboard}>
                     <ListItemPrefix>
                       <PowerIcon className="h-5 w-5" />
                     </ListItemPrefix>
