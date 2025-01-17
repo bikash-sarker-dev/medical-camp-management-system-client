@@ -1,10 +1,415 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { FaPencil } from "react-icons/fa6";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 import HeaderDashboard from "../sharedashboard/HeaderDashboard";
+import useSecureAxios from "./../../hooks/useSecureAxios";
+
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  IconButton,
+  Input,
+  Textarea,
+  Typography,
+} from "@material-tailwind/react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
+
+const imageKey = import.meta.env.VITE_ACCESS_API_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${imageKey}`;
 
 const ManageCamps = () => {
+  const secureAxios = useSecureAxios();
+  const axiosPublic = useAxiosPublic();
+  const [open, setOpen] = useState(false);
+  const [upCamp, setUpCamp] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const { data: camps = [], refetch } = useQuery({
+    queryKey: ["camps"],
+    queryFn: async () => {
+      const res = await secureAxios.get("/camps");
+      return res.data;
+    },
+  });
+  const handleOpen = () => {
+    setOpen(!open);
+    reset();
+  };
+  //   delete function
+  const handleDeleteCamp = (camp) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await secureAxios.delete(`/camps/${camp._id}`);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
+
+  //   update working function
+  const handleUpdateCamp = (camp) => {
+    setUpCamp(camp);
+    handleOpen();
+  };
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const imageFile = { image: data.photo[0] };
+
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    if (res.data.success) {
+      const campItem = {
+        CampName: data.CampName,
+        Image: res.data.data.display_url,
+        CampFees: parseInt(data.CampFees),
+        DateAndTime: data.DateAndTime,
+        Location: data.Location,
+        HealthcareProfessional: data.HealthcareProfessional,
+        ParticipantCount: parseInt(data.ParticipantCount),
+        Description: data.Description,
+      };
+
+      const res2 = await secureAxios.put(
+        `/update-camp/${upCamp._id}`,
+        campItem
+      );
+      console.log(res2.data);
+      if (res2.data.modifiedCount > 0) {
+        setOpen(false);
+        refetch();
+        toast.success("Your Camp Data Update successfully");
+      }
+      reset();
+    }
+  };
+
   return (
     <div>
       <HeaderDashboard title={"Manage Camps"} />
+      <div className="mr-8 my-10">
+        <div className="relative flex flex-col w-full h-[700px] text-gray-700 bg-camp-default shadow-md rounded-xl bg-clip-border">
+          <div className="p-6 px-0 overflow-scroll">
+            <table className="w-full text-left table-auto min-w-max">
+              <thead className="bg-camp-info">
+                <tr>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Camp Name
+                    </p>
+                  </th>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Camp Fees
+                    </p>
+                  </th>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Date and Time
+                    </p>
+                  </th>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Location
+                    </p>
+                  </th>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Healthcare Professional
+                    </p>
+                  </th>
+                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      {" "}
+                      Action
+                    </p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {camps.map((camp) => (
+                  <tr key={camp._id} className="">
+                    <td className="px-4 py-2 ">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={camp.Image}
+                          alt="Spotify"
+                          className="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1"
+                        />
+                        <p className="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                          {camp.CampName}
+                        </p>
+                      </div>
+                    </td>
+                    <td className="p-4 border-b border-blue-gray-50">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        ${camp.CampFees}
+                      </p>
+                    </td>
+                    <td className="p-4 border-b border-blue-gray-50">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.DateAndTime}
+                      </p>
+                    </td>
+                    <td className="p-4 border-b border-blue-gray-50">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.Location}
+                      </p>
+                    </td>
+                    <td className="p-4 border-b border-blue-gray-50">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.HealthcareProfessional}
+                      </p>
+                    </td>
+                    <td className="p-4 border-b border-blue-gray-50 space-x-3">
+                      <button
+                        onClick={() => handleUpdateCamp(camp)}
+                        className="bg-camp-secondary p-2 rounded-md text-camp-background text-xl"
+                        type="button"
+                      >
+                        <FaPencil />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCamp(camp)}
+                        className="bg-red-500 p-2 rounded-md text-camp-background text-xl"
+                        type="button"
+                      >
+                        <RiDeleteBin5Line />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <Dialog size="sm" open={open} handler={handleOpen} className="p-4">
+        <DialogHeader className="relative m-0 block">
+          <Typography variant="h4" color="blue-gray">
+            Update Camp
+          </Typography>
+
+          <IconButton
+            size="sm"
+            variant="text"
+            className="!absolute right-3.5 top-3.5"
+            onClick={handleOpen}
+          >
+            <XMarkIcon className="h-4 w-4 stroke-2" />
+          </IconButton>
+        </DialogHeader>
+        <DialogBody className="space-y-4 pb-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Camp Name
+                </Typography>
+                <Input
+                  {...register("CampName")}
+                  color="gray"
+                  size="lg"
+                  placeholder="Camp Name"
+                  defaultValue={upCamp.CampName}
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Camp Fees
+                </Typography>
+                <Input
+                  {...register("CampFees")}
+                  color="gray"
+                  size="lg"
+                  type="number"
+                  defaultValue={upCamp.CampFees}
+                  placeholder="Camp Fees"
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Date & Time
+                </Typography>
+                <Input
+                  {...register("DateAndTime")}
+                  color="gray"
+                  size="lg"
+                  defaultValue={upCamp.DateAndTime}
+                  type="datetime-local"
+                  placeholder="Date & Time"
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Location
+                </Typography>
+                <Input
+                  {...register("Location")}
+                  color="gray"
+                  size="lg"
+                  type="text"
+                  defaultValue={upCamp.Location}
+                  placeholder="Location"
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  Healthcare Professional Name
+                </Typography>
+                <Input
+                  {...register("HealthcareProfessional")}
+                  color="gray"
+                  size="lg"
+                  defaultValue={upCamp.HealthcareProfessional}
+                  placeholder="Healthcare Professional Name"
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 text-left font-medium"
+                >
+                  participant count
+                </Typography>
+                <Input
+                  {...register("ParticipantCount")}
+                  color="gray"
+                  size="lg"
+                  value={upCamp.ParticipantCount}
+                  disabled
+                  type="number"
+                  placeholder="participant count"
+                  className="placeholder:opacity-100 focus:!border-camp-primary border"
+                  containerProps={{
+                    className: "!min-w-full",
+                  }}
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                />
+              </div>
+            </div>
+            <div>
+              <input
+                {...register("photo", { required: true })}
+                type="file"
+                className=""
+              />
+            </div>
+            <div className="w-full">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="mb-2 text-left font-medium"
+              >
+                Description
+              </Typography>
+              <Textarea
+                {...register("Description")}
+                placeholder="Your Comment"
+                rows={6}
+                defaultValue={upCamp.Description}
+              />
+            </div>
+
+            <div>
+              <Button type="submit" className="bg-camp-accent w-full">
+                Update Camp
+              </Button>
+            </div>
+          </form>
+        </DialogBody>
+      </Dialog>
     </div>
   );
 };
