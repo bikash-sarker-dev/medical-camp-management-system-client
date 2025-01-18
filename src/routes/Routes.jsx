@@ -4,6 +4,7 @@ import AllParticipant from "../dashboard/allUser/AllParitcipant";
 import ManageCamps from "../dashboard/ManageCams/ManageCams";
 import ManageRegisteredCamps from "../dashboard/manageRegisteredCapms/ManageRegisteredCapms";
 import ManageProfile from "../dashboard/MangeProfile/ManageProfile";
+import RegisteredCampManage from "../dashboard/participant/registeredCampManage/RegisteredCampManage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
@@ -45,6 +46,13 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
+      // participant route
+      {
+        path: "/dashboard/registered-camps",
+        element: <RegisteredCampManage />,
+      },
+
+      // organizer route
       {
         path: "/dashboard/add-camp",
         element: <AddCamp />,

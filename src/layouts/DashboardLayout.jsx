@@ -137,7 +137,15 @@ const DashboardLayout = () => {
                     </ListItemPrefix>
                     Analytics
                   </ListItem>
-                  <Link to="/dashboard/all-participant">
+                  <Link to="/dashboard/manage-profile">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <UserCircleIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Participant Profile
+                    </ListItem>
+                  </Link>
+                  <Link to="/dashboard/registered-camps">
                     <ListItem>
                       <ListItemPrefix>
                         <ShoppingBagIcon className="h-5 w-5" />
@@ -153,12 +161,6 @@ const DashboardLayout = () => {
                     <ListItemSuffix>
                       <Chip value="14" size="sm" className="rounded-full" />
                     </ListItemSuffix>
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Participant Profile
                   </ListItem>
 
                   <ListItem onClick={handleLogOutFromDashboard}>
