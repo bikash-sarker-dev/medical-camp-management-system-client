@@ -1,11 +1,12 @@
 import { Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../../sharedashboard/HeaderDashboard";
 import useAuth from "./../../../hooks/useAuth";
 import useSecureAxios from "./../../../hooks/useSecureAxios";
+import Feedback from "./Feedback";
 
 const TABLE_HEAD = [
   "Participant Name",
@@ -20,6 +21,8 @@ const TABLE_HEAD = [
 const RegisteredCampManage = () => {
   const { user } = useAuth();
   const secureAxios = useSecureAxios();
+  const [open, setOpen] = useState(false);
+  const [feedbackValue, setFeedbackValue] = useState("");
 
   const { data: registeredCamps = [], refetch } = useQuery({
     queryKey: ["registeredCamps"],
@@ -53,6 +56,11 @@ const RegisteredCampManage = () => {
         }
       }
     });
+  };
+
+  const handleFeedback = (join) => {
+    setFeedbackValue(join);
+    setOpen(!open);
   };
   return (
     <div>
@@ -168,7 +176,10 @@ const RegisteredCampManage = () => {
                       className="font-medium "
                     >
                       {joinItem.Confirmation === "confirmed" ? (
-                        <button className="bg-green-500 p-2 rounded-sm text-camp-background mx-1">
+                        <button
+                          onClick={() => handleFeedback(joinItem)}
+                          className="bg-green-500 p-2 rounded-sm text-camp-background mx-1"
+                        >
                           feedback
                         </button>
                       ) : (
@@ -181,6 +192,7 @@ const RegisteredCampManage = () => {
             </tbody>
           </table>
         </Card>
+        <Feedback open={open} setOpen={setOpen} feedbackValue={feedbackValue} />
       </div>
     </div>
   );

@@ -126,7 +126,7 @@ const CheckoutForm = () => {
           }}
         />
         <button
-          className="bg-camp-accent px-8 py-4 rounded-md text-xl mt-6 text-camp-background"
+          className="bg-camp-accent px-8 py-4 rounded-md text-lg mt-6 text-camp-background"
           type="submit"
         >
           Pay
