@@ -4,6 +4,7 @@ import AllParticipant from "../dashboard/allUser/AllParitcipant";
 import ManageCamps from "../dashboard/ManageCams/ManageCams";
 import ManageRegisteredCamps from "../dashboard/manageRegisteredCapms/ManageRegisteredCapms";
 import ManageProfile from "../dashboard/MangeProfile/ManageProfile";
+import Payment from "../dashboard/participant/payment/Payment";
 import RegisteredCampManage from "../dashboard/participant/registeredCampManage/RegisteredCampManage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/registered-camps",
         element: <RegisteredCampManage />,
+      },
+      {
+        path: "/dashboard/registered-camps/payment/:id",
+        element: <Payment />,
       },
 
       // organizer route

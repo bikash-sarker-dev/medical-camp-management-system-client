@@ -1,6 +1,7 @@
 import { Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../../sharedashboard/HeaderDashboard";
 import useAuth from "./../../../hooks/useAuth";
@@ -115,9 +116,13 @@ const RegisteredCampManage = () => {
                     >
                       {joinItem.PaymentStatus === "unPaid" ? (
                         <>
-                          <button className="bg-camp-accent p-2 rounded-sm text-camp-background mx-1">
-                            Pay
-                          </button>
+                          <Link
+                            to={`/dashboard/registered-camps/payment/${joinItem._id}`}
+                          >
+                            <button className="bg-camp-accent p-2 rounded-sm text-camp-background mx-1">
+                              Pay
+                            </button>
+                          </Link>
                         </>
                       ) : (
                         "Paid"
