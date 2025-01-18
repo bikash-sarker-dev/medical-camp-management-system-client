@@ -26,20 +26,36 @@ const RegisterForm = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const profileInfo = {
+      firstName: data.firstName,
+      lastName: data.firstName,
+      email: data.email,
+      phone: "",
+      photo: "",
+      eduction: "",
+      address: "",
+      country: "",
+      state: "",
+      website: "",
+      bio: "",
+    };
+
+    const fullName = `${data.firstName} ${data.lastName} `;
+
     newAccountCreate(data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        const userName = { displayName: data.username };
+        const userName = { displayName: fullName };
         updateProfile(auth.currentUser, userName)
           .then(() => {
             const userInfo = {
-              name: data.username,
+              name: fullName,
               email: data.email,
             };
+            axiosPublic.post("/profile", profileInfo);
             axiosPublic.post("/users", userInfo).then((res) => {
-              console.log(res.data);
               toast.success("successfully register . Please login ");
               navigate("/");
             });
@@ -73,21 +89,55 @@ const RegisterForm = () => {
                 className="mt-8 mb-2 w-full "
               >
                 <div className="mb-1 flex flex-col gap-6">
-                  <Typography variant="h6" color="blue-gray" className="-mb-3">
-                    Your Name
-                  </Typography>
-                  <Input
-                    {...register("username", { required: true })}
-                    size="lg"
-                    placeholder="user name"
-                    className=" !border-t-blue-gray-200 focus:!border-camp-accent w-full"
-                    labelProps={{
-                      className: "before:content-none after:content-none",
-                    }}
-                  />
-                  {errors.username && (
-                    <p className="text-red-600 -mt-2">This field is required</p>
-                  )}
+                  <div className="flex gap-4">
+                    <div className="flex-1">
+                      <Typography
+                        variant="h6"
+                        color="blue-gray"
+                        className="mb-3"
+                      >
+                        First Name
+                      </Typography>
+                      <Input
+                        {...register("firstName", { required: true })}
+                        size="lg"
+                        placeholder="first name"
+                        className=" !border-t-blue-gray-200 focus:!border-camp-accent w-full"
+                        labelProps={{
+                          className: "before:content-none after:content-none",
+                        }}
+                      />
+                      {errors.username && (
+                        <p className="text-red-600 -mt-2">
+                          This field is required
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <Typography
+                        variant="h6"
+                        color="blue-gray"
+                        className="mb-3"
+                      >
+                        Last Name
+                      </Typography>
+                      <Input
+                        {...register("lastName", { required: true })}
+                        size="lg"
+                        placeholder="Last name"
+                        className=" !border-t-blue-gray-200 focus:!border-camp-accent w-full"
+                        labelProps={{
+                          className: "before:content-none after:content-none",
+                        }}
+                      />
+                      {errors.username && (
+                        <p className="text-red-600 -mt-2">
+                          This field is required
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   <Typography variant="h6" color="blue-gray" className="-mb-3">
                     Your Email
                   </Typography>
