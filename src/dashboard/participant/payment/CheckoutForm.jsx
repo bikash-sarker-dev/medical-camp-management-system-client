@@ -86,7 +86,8 @@ const CheckoutForm = () => {
         joinId: campFeesPayment._id,
         campName: campFeesPayment.campName,
         date: new Date(),
-        status: "pending",
+        paymentStatus: "paid",
+        confirmationStatus: "confirmed",
       };
 
       secureAxios.post("/payment", payment).then((res) => {

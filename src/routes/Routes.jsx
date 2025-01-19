@@ -4,7 +4,9 @@ import AllParticipant from "../dashboard/allUser/AllParitcipant";
 import ManageCamps from "../dashboard/ManageCams/ManageCams";
 import ManageRegisteredCamps from "../dashboard/manageRegisteredCapms/ManageRegisteredCapms";
 import ManageProfile from "../dashboard/MangeProfile/ManageProfile";
+import Analytics from "../dashboard/participant/analytics/Analytics";
 import Payment from "../dashboard/participant/payment/Payment";
+import PaymentHistory from "../dashboard/participant/paymentHistory/PaymentHistory";
 import RegisteredCampManage from "../dashboard/participant/registeredCampManage/RegisteredCampManage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/registered-camps/payment/:id",
         element: <Payment />,
+      },
+      {
+        path: "/dashboard/payment-history",
+        element: <PaymentHistory />,
+      },
+      {
+        path: "/dashboard/analytics",
+        element: <Analytics />,
       },
 
       // organizer route

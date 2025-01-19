@@ -8,11 +8,9 @@ import {
 } from "@heroicons/react/24/solid";
 import {
   Card,
-  Chip,
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
@@ -131,12 +129,14 @@ const DashboardLayout = () => {
             ) : (
               <>
                 <List className="text-camp-background text-[15px]">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <PresentationChartBarIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Analytics
-                  </ListItem>
+                  <Link to="/dashboard/analytics">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <PresentationChartBarIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Analytics
+                    </ListItem>
+                  </Link>
                   <Link to="/dashboard/manage-profile">
                     <ListItem>
                       <ListItemPrefix>
@@ -153,16 +153,14 @@ const DashboardLayout = () => {
                       Registered Camps
                     </ListItem>
                   </Link>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <InboxIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Payment History
-                    <ListItemSuffix>
-                      <Chip value="14" size="sm" className="rounded-full" />
-                    </ListItemSuffix>
-                  </ListItem>
-
+                  <Link to="/dashboard/payment-history">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <InboxIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Payment History
+                    </ListItem>
+                  </Link>
                   <ListItem onClick={handleLogOutFromDashboard}>
                     <ListItemPrefix>
                       <PowerIcon className="h-5 w-5" />
