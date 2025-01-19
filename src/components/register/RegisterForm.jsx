@@ -10,13 +10,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import registerImg from "../../assets/images/register-medical.png";
 import { auth } from "../../firebase/firebase.config";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const RegisterForm = () => {
-  const { newAccountCreate } = useAuth();
+  const { newAccountCreate, setLoading } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
@@ -68,6 +69,15 @@ const RegisterForm = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        if (errorMessage.includes("auth/email-already-in-use")) {
+          Swal.fire({
+            icon: "error",
+            title: "Something went wrong!",
+            text: "Your password and email already in using . please New email provide .",
+          });
+
+          setLoading(false);
+        }
         console.log(errorMessage);
       });
   };

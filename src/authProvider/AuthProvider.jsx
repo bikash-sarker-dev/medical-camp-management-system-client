@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
   const shareInfo = {
     user,
     loading,
+    setLoading,
     newAccountCreate,
     accountLogOut,
     accountLogin,

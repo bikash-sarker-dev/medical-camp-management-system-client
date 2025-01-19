@@ -3,11 +3,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import loginImg from "../../assets/images/login-medical.png";
 import useAuth from "../../hooks/useAuth";
 
 const LoginForm = () => {
-  const { accountLogin } = useAuth();
+  const { accountLogin, setLoading } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -25,6 +26,15 @@ const LoginForm = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        if (errorMessage.includes("auth/invalid-credential")) {
+          Swal.fire({
+            icon: "error",
+            title: "Something went wrong!",
+            text: "Your password and email not match. please try again.",
+          });
+
+          setLoading(false);
+        }
         console.log(errorMessage);
       });
   };
