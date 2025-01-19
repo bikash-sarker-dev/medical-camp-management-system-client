@@ -71,12 +71,14 @@ const DashboardLayout = () => {
             {isOrganize ? (
               <>
                 <List className="text-camp-background text-[15px]">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <PresentationChartBarIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Dashboard
-                  </ListItem>
+                  <Link to="/dashboard/home">
+                    <ListItem>
+                      <ListItemPrefix>
+                        <PresentationChartBarIcon className="h-5 w-5" />
+                      </ListItemPrefix>
+                      Dashboard home
+                    </ListItem>
+                  </Link>
                   <Link to="/dashboard/add-camp">
                     <ListItem>
                       <ListItemPrefix>

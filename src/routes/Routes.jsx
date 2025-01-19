@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddCamp from "../dashboard/addCamp/AddCamp";
 import AllParticipant from "../dashboard/allUser/AllParitcipant";
+import HomeDashboard from "../dashboard/homeDashboard/HomeDashboard";
 import ManageCamps from "../dashboard/ManageCams/ManageCams";
 import ManageRegisteredCamps from "../dashboard/manageRegisteredCapms/ManageRegisteredCapms";
 import ManageProfile from "../dashboard/MangeProfile/ManageProfile";
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       },
 
       // organizer route
+      {
+        path: "/dashboard/home",
+        element: <HomeDashboard />,
+      },
       {
         path: "/dashboard/add-camp",
         element: <AddCamp />,

@@ -84,7 +84,7 @@ const ManageRegisteredCamps = () => {
     <div>
       <HeaderDashboard title={"Manage registered camps"} />
       <div className="mt-10 mr-6">
-        <Card className="h-full w-full overflow-scroll">
+        <Card className="h-full w-full overflow-scroll h-[700px]">
           <table className="w-full min-w-max table-auto text-left">
             <thead>
               <tr>

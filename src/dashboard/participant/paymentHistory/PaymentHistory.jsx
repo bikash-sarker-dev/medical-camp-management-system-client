@@ -2,6 +2,7 @@ import { Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import HeaderDashboard from "../../sharedashboard/HeaderDashboard";
+import useAuth from "./../../../hooks/useAuth";
 import useSecureAxios from "./../../../hooks/useSecureAxios";
 
 const TABLE_HEAD = [
@@ -15,11 +16,12 @@ const TABLE_HEAD = [
 
 const PaymentHistory = () => {
   const secureAxios = useSecureAxios();
+  const { user } = useAuth();
 
   const { data: paymentHistory = [], refetch } = useQuery({
     queryKey: ["paymentHistory"],
     queryFn: async () => {
-      const res = await secureAxios.get("/payments");
+      const res = await secureAxios.get(`/payments?email=${user.email}`);
       return res.data;
     },
   });
