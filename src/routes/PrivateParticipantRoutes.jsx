@@ -10,10 +10,10 @@ const PrivateParticipantRoutes = ({ children }) => {
     return <h2>Loading.........</h2>;
   }
 
-  if (user && user?.email) {
+  if (user && user.email) {
     return children;
   }
-  return <Navigate to="/login" state={location.pathname} />;
+  return <Navigate to="/login" state={location.pathname} replace />;
 };
 
 export default PrivateParticipantRoutes;

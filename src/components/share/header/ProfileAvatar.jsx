@@ -17,7 +17,7 @@ const ProfileAvatar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const closeMenu = () => setIsMenuOpen(false);
-  const isOrganize = useOrganizer();
+  const [isOrganize] = useOrganizer();
 
   const firstCharacter = user?.displayName?.split("")[0];
   const colorCode = `#${Math.floor(Math.random() * 1000000)}`;

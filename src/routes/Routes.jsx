@@ -134,9 +134,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-profile",
         element: (
-          <PrivateOrganizerRoutes>
+          <PrivateParticipantRoutes>
             <ManageProfile />
-          </PrivateOrganizerRoutes>
+          </PrivateParticipantRoutes>
         ),
       },
     ],

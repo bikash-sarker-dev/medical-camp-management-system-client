@@ -8,8 +8,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { AuthContext } from "../contextApi";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +34,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
   const shareInfo = {
-    name: "shrabon",
     user,
     loading,
     newAccountCreate,
@@ -41,11 +42,20 @@ const AuthProvider = ({ children }) => {
     profileUpdate,
   };
 
-  console.log(user);
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currenUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currenUser) => {
       setUser(currenUser);
-      setLoading(false);
+      if (currenUser) {
+        let userInfo = { email: currenUser.email };
+        const res = await axiosPublic.post("/jwt-login", userInfo);
+        if (res.data.token) {
+          localStorage.setItem("access-token", res.data.token);
+          setLoading(false);
+        }
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => {
       unSubscribe();
