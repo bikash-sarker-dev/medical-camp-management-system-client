@@ -14,6 +14,7 @@ import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
 import AvailableCampPage from "../pages/AvailableCampPage";
 import DetailsPage from "../pages/DetailsPage";
+import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

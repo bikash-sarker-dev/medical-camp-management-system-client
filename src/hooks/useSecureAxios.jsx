@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const secureAxios = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://medical-camp-management-system-server-chi.vercel.app",
 });
 
 const useSecureAxios = () => {

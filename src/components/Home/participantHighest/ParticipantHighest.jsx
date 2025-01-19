@@ -1,6 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionHead from "../../share/sectionHead/SectionHead";
 import BookingCard from "./PopularCard";
@@ -31,9 +32,11 @@ const ParticipantHighest = () => {
             ))}
           </div>
           <div className="text-center my-12">
-            <Button className="text-lg font-poppins bg-camp-primary px-10">
-              See All More
-            </Button>
+            <Link to="/availableCamp">
+              <Button className="text-lg font-poppins bg-camp-primary px-10">
+                See All More
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
