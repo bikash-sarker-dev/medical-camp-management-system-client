@@ -16,6 +16,7 @@ import {
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import TabTitle from "../components/share/htmlHead/TabTitle";
 import useOrganizer from "../hooks/useOrganizer";
 import LoadingPage from "../pages/LoadingPage";
 import useAuth from "./../hooks/useAuth";
@@ -43,6 +44,7 @@ const DashboardLayout = () => {
   console.log(isOrganize);
   return (
     <div>
+      <TabTitle title={` Medical | Dashboard`} />
       <ToastContainer
         position="top-right"
         autoClose={5000}
