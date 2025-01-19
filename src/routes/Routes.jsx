@@ -17,6 +17,8 @@ import DetailsPage from "../pages/DetailsPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import PrivateOrganizerRoutes from "./PrivateOrganizerRoutes";
+import PrivateParticipantRoutes from "./PrivateParticipantRoutes";
 
 const router = createBrowserRouter([
   {
@@ -48,50 +50,94 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateParticipantRoutes>
+        <DashboardLayout />
+      </PrivateParticipantRoutes>
+    ),
     children: [
       // participant route
       {
         path: "/dashboard/registered-camps",
-        element: <RegisteredCampManage />,
+        element: (
+          <PrivateParticipantRoutes>
+            <RegisteredCampManage />
+          </PrivateParticipantRoutes>
+        ),
       },
       {
         path: "/dashboard/registered-camps/payment/:id",
-        element: <Payment />,
+        element: (
+          <PrivateParticipantRoutes>
+            <Payment />
+          </PrivateParticipantRoutes>
+        ),
       },
       {
         path: "/dashboard/payment-history",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateParticipantRoutes>
+            <PaymentHistory />
+          </PrivateParticipantRoutes>
+        ),
       },
       {
         path: "/dashboard/analytics",
-        element: <Analytics />,
+        element: (
+          <PrivateParticipantRoutes>
+            <Analytics />
+          </PrivateParticipantRoutes>
+        ),
       },
 
       // organizer route
       {
         path: "/dashboard/home",
-        element: <HomeDashboard />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <HomeDashboard />
+          </PrivateOrganizerRoutes>
+        ),
       },
       {
         path: "/dashboard/add-camp",
-        element: <AddCamp />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <AddCamp />
+          </PrivateOrganizerRoutes>
+        ),
       },
       {
         path: "/dashboard/all-participant",
-        element: <AllParticipant />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <AllParticipant />
+          </PrivateOrganizerRoutes>
+        ),
       },
       {
         path: "/dashboard/manage-camps",
-        element: <ManageCamps />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <ManageCamps />
+          </PrivateOrganizerRoutes>
+        ),
       },
       {
         path: "/dashboard/manage-registered-camps",
-        element: <ManageRegisteredCamps />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <ManageRegisteredCamps />
+          </PrivateOrganizerRoutes>
+        ),
       },
       {
         path: "/dashboard/manage-profile",
-        element: <ManageProfile />,
+        element: (
+          <PrivateOrganizerRoutes>
+            <ManageProfile />
+          </PrivateOrganizerRoutes>
+        ),
       },
     ],
   },

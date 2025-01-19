@@ -10,12 +10,14 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
+import useOrganizer from "../../../hooks/useOrganizer";
 
 const ProfileAvatar = () => {
   const { user, accountLogOut } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+  const isOrganize = useOrganizer();
 
   const firstCharacter = user?.displayName?.split("")[0];
   const colorCode = `#${Math.floor(Math.random() * 1000000)}`;
@@ -81,7 +83,10 @@ const ProfileAvatar = () => {
             </Typography>
           </MenuItem>
           <MenuItem className="flex items-center gap-2">
-            <Link className="flex items-center gap-2" to="/dashboard">
+            <Link
+              className="flex items-center gap-2"
+              to={isOrganize ? `/dashboard/home` : "/dashboard/analytics"}
+            >
               <svg
                 width="16"
                 height="16"
