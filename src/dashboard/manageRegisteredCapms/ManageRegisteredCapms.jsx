@@ -1,6 +1,6 @@
-import { Card, Typography } from "@material-tailwind/react";
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Card, CardHeader, Input, Typography } from "@material-tailwind/react";
+import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../sharedashboard/HeaderDashboard";
@@ -17,14 +17,22 @@ const TABLE_HEAD = [
 
 const ManageRegisteredCamps = () => {
   const secureAxios = useSecureAxios();
+  const [search, setSearch] = useState("");
+  const [allJoin, setAllJoin] = useState([]);
 
-  const { data: joinCamps = [], refetch } = useQuery({
-    queryKey: ["joinCamps"],
-    queryFn: async () => {
-      const res = await secureAxios.get("/join-camps");
-      return res.data;
-    },
-  });
+  // const { data: joinCamps = [], refetch } = useQuery({
+  //   queryKey: ["joinCamps"],
+  //   queryFn: async () => {
+  //     const res = await secureAxios.get("/join-camps");
+  //     return res.data;
+  //   },
+  // });
+  console.log(search);
+  useEffect(() => {
+    secureAxios.get(`/join-search?search=${search}`).then((res) => {
+      setAllJoin(res.data);
+    });
+  }, [search]);
 
   //   join camp deleted working
   const handleDeleteJoinCamp = (JoinItemCamp) => {
@@ -84,7 +92,23 @@ const ManageRegisteredCamps = () => {
     <div>
       <HeaderDashboard title={"Manage registered camps"} />
       <div className="mt-10 mr-6">
-        <Card className="h-full w-full overflow-scroll h-[700px]">
+        {/* searching  */}
+        <div>
+          <CardHeader
+            floated={false}
+            shadow={false}
+            className=" rounded-none  max-w-md  mb-3"
+          >
+            <div className="w-full ">
+              <Input
+                label="Search Invoice"
+                onChange={(e) => setSearch(e.target.value)}
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              />
+            </div>
+          </CardHeader>
+        </div>
+        <Card className=" w-full overflow-scroll h-[700px]">
           <table className="w-full min-w-max table-auto text-left">
             <thead>
               <tr>
@@ -105,7 +129,7 @@ const ManageRegisteredCamps = () => {
               </tr>
             </thead>
             <tbody>
-              {joinCamps.map((joinItem) => (
+              {allJoin.map((joinItem) => (
                 <tr key={joinItem._id}>
                   <td className="p-4 border-b border-blue-gray-50">
                     <Typography
