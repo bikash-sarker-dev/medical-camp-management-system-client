@@ -8,6 +8,17 @@ import HeaderDashboard from "../../sharedashboard/HeaderDashboard";
 import useAuth from "./../../../hooks/useAuth";
 import useSecureAxios from "./../../../hooks/useSecureAxios";
 
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+
 const Analytics = () => {
   const { user } = useAuth();
   const secureAxios = useSecureAxios();
@@ -41,6 +52,7 @@ const Analytics = () => {
     joinConfirmationPendingCount,
     joinConfirmationConfirmedCount,
   } = participantAnalytics;
+
   return (
     <div>
       <HeaderDashboard title={"Analytics charter"} />
@@ -109,6 +121,35 @@ const Analytics = () => {
           </Card>
         </div>
       </div>
+
+      {/* charter  */}
+      <div className="mr-10">
+        <div>
+          <h1 className="text-3xl my-5 font-semibold">Join Camps</h1>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart
+              width={1000}
+              height={500}
+              data={participantAnalyticsJoin}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="campName" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="campFees" fill="#8884d8" />
+              <Bar dataKey="age" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+      <div></div>
     </div>
   );
 };
