@@ -53,15 +53,6 @@ const AvailableMain = () => {
     }
   };
 
-  // const { data: allCamp = [] } = useQuery({
-  //   queryKey: ["camps"],
-  //   queryFn: async () => {
-  //     const res = await axiosPublic.get("/camps");
-  //     setCamps(res.data);
-  //     return res.data;
-  //   },
-  // });
-
   return (
     <div className="my-24">
       <div className="container">
@@ -75,7 +66,6 @@ const AvailableMain = () => {
         </div>
         {/* pagination  */}
         <div className="pagination mt-16">
-          <p> Current page Number : {currentPage}</p>
           <button
             className=" border border-camp-secondary hover:bg-camp-secondary hover:text-camp-background p-2 px-4 m-2 rounded-md "
             onClick={handlePrevPage}

@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPencil } from "react-icons/fa6";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../sharedashboard/HeaderDashboard";
 import useSecureAxios from "./../../hooks/useSecureAxios";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Button,
+  CardHeader,
   Dialog,
   DialogBody,
   DialogHeader,
@@ -28,7 +28,9 @@ const ManageCamps = () => {
   const secureAxios = useSecureAxios();
   const axiosPublic = useAxiosPublic();
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [upCamp, setUpCamp] = useState("");
+  const [camps, setCamps] = useState([]);
   const {
     register,
     handleSubmit,
@@ -37,13 +39,12 @@ const ManageCamps = () => {
     formState: { errors },
   } = useForm();
 
-  const { data: camps = [], refetch } = useQuery({
-    queryKey: ["camps"],
-    queryFn: async () => {
-      const res = await secureAxios.get("/camps");
-      return res.data;
-    },
-  });
+  useEffect(() => {
+    secureAxios.get(`/camp-search?search=${search}`).then((res) => {
+      setCamps(res.data);
+    });
+  }, [search]);
+
   const handleOpen = () => {
     setOpen(!open);
     reset();
@@ -113,11 +114,30 @@ const ManageCamps = () => {
     }
   };
 
+  console.log(search);
   return (
     <div>
       <HeaderDashboard title={"Manage Camps"} />
+
       <div className="mr-8 my-10">
         <div className="relative flex flex-col w-full h-[700px] text-gray-700 bg-camp-default shadow-md rounded-xl bg-clip-border">
+          {/* searching  */}
+          <div>
+            <CardHeader
+              floated={false}
+              shadow={false}
+              className=" rounded-none  max-w-md  bg-camp-default"
+            >
+              <div className="w-full ">
+                <Input
+                  label="Search Invoice"
+                  onChange={(e) => setSearch(e.target.value)}
+                  icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                />
+              </div>
+            </CardHeader>
+          </div>
+          {/* table camps  */}
           <div className="p-6 px-0 overflow-scroll">
             <table className="w-full text-left table-auto min-w-max">
               <thead className="bg-camp-info">
