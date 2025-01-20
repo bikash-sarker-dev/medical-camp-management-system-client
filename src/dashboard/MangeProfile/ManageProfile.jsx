@@ -13,9 +13,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import uesProfile from "../../hooks/uesProfile";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import HeaderDashboard from "../sharedashboard/HeaderDashboard";
 import useAuth from "./../../hooks/useAuth";
-import useSecureAxios from "./../../hooks/useSecureAxios";
 
 const ManageProfile = () => {
   const { user } = useAuth();
@@ -23,7 +23,7 @@ const ManageProfile = () => {
   const [profile, refetch] = uesProfile();
   console.log(profile);
 
-  const secureAxios = useSecureAxios();
+  const axiosPublic = useAxiosPublic();
   const [open, setOpen] = React.useState(false);
 
   const {
@@ -43,7 +43,7 @@ const ManageProfile = () => {
     console.log(data);
     const fullName = `${data.firstName} ${data.lastName} `;
     const imageCatch = { image: data.photo[0] };
-    const res = await secureAxios.post(imageStoreApi, imageCatch, {
+    const res = await axiosPublic.post(imageStoreApi, imageCatch, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -68,7 +68,7 @@ const ManageProfile = () => {
       photoURL: res?.data?.data?.display_url,
     })
       .then(async () => {
-        const res2 = await secureAxios.patch(
+        const res2 = await axiosPublic.patch(
           `/profile/${user.email}`,
           profileInfo
         );
@@ -150,7 +150,7 @@ const ManageProfile = () => {
               <h4 className="text-xl font-semibold text-gray-800">
                 Your Education:
               </h4>
-              <p className="text-gray-700 mt-1">{user?.email}</p>
+              <p className="text-gray-700 mt-1">{profile.eduction}</p>
             </div>{" "}
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">Address:</h4>

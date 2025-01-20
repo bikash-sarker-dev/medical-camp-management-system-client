@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import loginImg from "../../assets/images/login-medical.png";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../share/socialLogin/SocialLogin";
 
 const LoginForm = () => {
   const { accountLogin, setLoading } = useAuth();
@@ -96,6 +97,7 @@ const LoginForm = () => {
                 <Button type="submit" className="mt-6 bg-camp-accent" fullWidth>
                   login
                 </Button>
+                <SocialLogin />
                 <Typography
                   color="gray"
                   className="mt-4 text-center font-normal"
