@@ -46,7 +46,7 @@ const SocialLogin = () => {
       });
   };
   return (
-    <div className="sm:flex gap-4 mt-5">
+    <div className="sm:flex gap-4 mt-5 ">
       <Button
         variant="outlined"
         size="sm"
@@ -64,7 +64,7 @@ const SocialLogin = () => {
       <Button
         variant="outlined"
         size="sm"
-        className="flex h-12 border-blue-gray-200 items-center justify-center gap-2"
+        className="flex h-12 mt-4 sm:mt-0 border-blue-gray-200 items-center justify-center gap-2"
         fullWidth
       >
         <CpuChipIcon className="h-6 w-6" />

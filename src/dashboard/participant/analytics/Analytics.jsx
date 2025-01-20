@@ -57,63 +57,63 @@ const Analytics = () => {
     <div>
       <HeaderDashboard title={"Analytics charter"} />
 
-      <div className="mt-12">
-        <div className="flex gap-10">
-          <Card className="mt-6 ">
+      <div className="mt-12 px-3 lg:px-0">
+        <div className="grid grid-coles-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10">
+          <Card className="lg:mt-6 ">
             <CardBody>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 Total Payment Amount
               </Typography>
               <div className="flex mt-5 gap-10">
                 <div>
-                  <FaSackDollar className="text-7xl text-yellow-700" />
+                  <FaSackDollar className=" lg:text-7xl text-3xl text-yellow-700" />
                 </div>
-                <Typography className="text-7xl font-bold">
+                <Typography className=" lg:text-7xl text-3xl font-bold">
                   {totalFess}$
                 </Typography>
               </div>
             </CardBody>
           </Card>
-          <Card className="mt-6 ">
+          <Card className="lg:mt-6 ">
             <CardBody>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 My all Join Camps
               </Typography>
               <div className="flex mt-5 gap-10">
                 <div>
-                  <FaUsers className="text-7xl text-cyan-400 " />
+                  <FaUsers className=" lg:text-7xl text-3xl text-cyan-400 " />
                 </div>
-                <Typography className="text-7xl font-bold ">
+                <Typography className=" lg:text-7xl text-3xl font-bold ">
                   {totalJoin}
                 </Typography>
               </div>
             </CardBody>
           </Card>
-          <Card className="mt-6 ">
+          <Card className="lg:mt-6 ">
             <CardBody>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 Payment Successfully
               </Typography>
               <div className="flex mt-5 gap-10">
                 <div>
-                  <IoShieldCheckmark className="text-7xl text-green-500" />
+                  <IoShieldCheckmark className=" lg:text-7xl text-3xl text-green-500" />
                 </div>
-                <Typography className="text-7xl font-bold">
+                <Typography className=" lg:text-7xl text-3xl font-bold">
                   {joinPaymentStatusPaid}
                 </Typography>
               </div>
             </CardBody>
           </Card>
-          <Card className="mt-6 ">
+          <Card className="lg:mt-6 ">
             <CardBody>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 My Confirmation Status Pending
               </Typography>
               <div className="flex mt-5 gap-10">
                 <div>
-                  <HiMiniPlayPause className="text-7xl text-purple-500" />
+                  <HiMiniPlayPause className=" lg:text-7xl text-3xl text-purple-500" />
                 </div>
-                <Typography className="text-7xl font-bold">
+                <Typography className=" lg:text-7xl text-3xl font-bold">
                   {joinConfirmationPendingCount}
                 </Typography>
               </div>

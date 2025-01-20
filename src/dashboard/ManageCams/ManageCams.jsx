@@ -119,7 +119,7 @@ const ManageCamps = () => {
     <div>
       <HeaderDashboard title={"Manage Camps"} />
 
-      <div className="mr-8 my-10">
+      <div className="lg:mr-8 my-10 px-4 lg:px-0">
         <div className="relative flex flex-col w-full h-[700px] text-gray-700 bg-camp-default shadow-md rounded-xl bg-clip-border">
           {/* searching  */}
           <div>

@@ -91,13 +91,13 @@ const ManageRegisteredCamps = () => {
   return (
     <div>
       <HeaderDashboard title={"Manage registered camps"} />
-      <div className="mt-10 mr-6">
+      <div className="mt-8 lg:mr-6 px-4 lg:px-0">
         {/* searching  */}
         <div>
           <CardHeader
             floated={false}
             shadow={false}
-            className=" rounded-none  max-w-md  mb-3"
+            className=" rounded-none   lg:max-w-md  mb-3 "
           >
             <div className="w-full ">
               <Input

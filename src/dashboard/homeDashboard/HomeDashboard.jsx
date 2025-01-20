@@ -20,8 +20,8 @@ const HomeDashboard = () => {
   return (
     <div>
       <HeaderDashboard title={"Home"} />
-      <div className="mt-12">
-        <div className="flex gap-10">
+      <div className="mt-12 lg:mr-5 px-3 lg:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
           <Card className="mt-6 bg-camp-info ">
             <CardBody>
               <Typography variant="h5" color="blue-gray" className="mb-2">

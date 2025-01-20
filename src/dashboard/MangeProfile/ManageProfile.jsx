@@ -93,7 +93,7 @@ const ManageProfile = () => {
       <HeaderDashboard title={"Manage Profile"} />
       <div className="max-w-5xl mx-auto  bg-camp-default rounded-xl p-10">
         <div className="">
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             {user?.photoURL ? (
               <div className="">
                 <div className="w-52 h-52 bg-camp-info flex justify-center items-center text-7xl font-semibold text-camp-primary rounded-full">
@@ -111,13 +111,13 @@ const ManageProfile = () => {
                 </div>
               </div>
             )}
-            <div className="mt-8 flex-1 ml-12">
+            <div className="mt-8 flex-1 md:ml-12">
               <h4 className="text-xl font-semibold text-gray-800">Your Bio:</h4>
               <p className="text-gray-700 mt-1 =">{profile.bio}</p>
             </div>
           </div>
 
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">
                 First Name:
@@ -132,7 +132,7 @@ const ManageProfile = () => {
             </div>
           </div>
           {/* email and phone  */}
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">
                 Participant Email:
@@ -147,7 +147,7 @@ const ManageProfile = () => {
             </div>
           </div>
           {/* eduction and address  */}
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">
                 Your Education:
@@ -160,7 +160,7 @@ const ManageProfile = () => {
             </div>
           </div>
           {/* country name and state/region  */}
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">
                 Country Name:
@@ -175,7 +175,7 @@ const ManageProfile = () => {
             </div>
           </div>
           {/* country name and state/region  */}
-          <div className="flex  items-center">
+          <div className="md:flex  items-center">
             <div className="mt-8 flex-1">
               <h4 className="text-xl font-semibold text-gray-800">
                 Website Url:
@@ -193,18 +193,18 @@ const ManageProfile = () => {
         size="md"
         open={open}
         handler={handleOpen}
-        className="bg-transparent shadow-none"
+        className="bg-transparent shadow-none  overflow-auto h-[500px] lg:h-auto"
       >
         <Card className="mx-auto w-full ">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <CardBody className="flex flex-col gap-4">
+            <CardBody className="flex flex-col gap-4  ">
               <div className="text-center py-2">
                 <Typography variant="h4" color="blue-gray">
                   Profile Update
                 </Typography>
               </div>
 
-              <div className="flex gap-5">
+              <div className="md:flex gap-5">
                 <div className="flex-1">
                   <div>
                     <Typography className="-mb-2" variant="h6">
@@ -232,7 +232,7 @@ const ManageProfile = () => {
                 </div>
               </div>
               {/* first or last Name  */}
-              <div className="flex gap-5">
+              <div className="md:flex gap-5">
                 <div className="flex-1">
                   <Typography className="mb-2" variant="h6">
                     First Name
@@ -259,7 +259,7 @@ const ManageProfile = () => {
                 </div>
               </div>
               {/* phone or email  */}
-              <div className="flex gap-5">
+              <div className="md:flex gap-5">
                 <div className="flex-1">
                   <Typography className="mb-2" variant="h6">
                     Participant Email
@@ -286,7 +286,7 @@ const ManageProfile = () => {
                 </div>
               </div>
               {/* eduction and address  */}
-              <div className="flex gap-5">
+              <div className="md:flex gap-5">
                 <div className="flex-1">
                   <Typography className="mb-2" variant="h6">
                     Your Eduction
@@ -312,7 +312,7 @@ const ManageProfile = () => {
                 </div>
               </div>
               {/* country name or state / region  */}
-              <div className="flex gap-5">
+              <div className="md:flex gap-5">
                 <div className="flex-1">
                   <Typography className="mb-2" variant="h6">
                     Country Name

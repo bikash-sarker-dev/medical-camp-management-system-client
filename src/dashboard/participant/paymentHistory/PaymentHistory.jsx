@@ -29,7 +29,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <HeaderDashboard title={"Payment history"} />
-      <div className="mt-10 mr-6">
+      <div className="mt-10 lg:mr-6 px-3 lg:px-0">
         <Card className="h-full w-full overflow-scroll">
           <table className="w-full min-w-max table-auto text-left">
             <thead>

@@ -85,11 +85,11 @@ const RegisterForm = () => {
   return (
     <div className="my-24">
       <div className="container">
-        <div className="md:flex gap-10 items-center ">
-          <div className="flex-1">
-            <img src={registerImg} alt="" />
+        <div className="lg:flex gap-10 items-center ">
+          <div className="lg:flex-1">
+            <img className="max-w-xl" src={registerImg} alt="" />
           </div>
-          <div className="flex-1 bg-camp-default p-10 max-w-lg rounded-xl border border-camp-info shadow-lg">
+          <div className="lg:flex-1 bg-camp-default p-10 max-w-lg rounded-xl border border-camp-info shadow-lg">
             <Card color="transparent" shadow={false}>
               <Typography color="gray" className="mt-1 font-normal">
                 Nice to meet you! Enter your details to register.
@@ -99,7 +99,7 @@ const RegisterForm = () => {
                 className="mt-8 mb-2 w-full "
               >
                 <div className="mb-1 flex flex-col gap-6">
-                  <div className="flex gap-4">
+                  <div className="md:flex gap-4">
                     <div className="flex-1">
                       <Typography
                         variant="h6"

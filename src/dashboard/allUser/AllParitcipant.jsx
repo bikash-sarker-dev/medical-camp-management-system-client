@@ -56,7 +56,7 @@ const AllParticipant = () => {
   return (
     <div>
       <HeaderDashboard title={"All participant"} />
-      <div className="mt-12 mr-8">
+      <div className="mt-12 lg:mr-8 px-4 lg:px-0">
         <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
           <table className="w-full text-left table-auto min-w-max">
             <thead>

@@ -35,8 +35,8 @@ const SearchAndSorting = ({ setCamps, setColumn }) => {
 
   return (
     <div className="bg-camp-info p-5 rounded-lg">
-      <div className="flex justify-between items-center">
-        <div className="w-full max-w-xl min-w-[200px]">
+      <div className="lg:flex  justify-between items-center">
+        <div className="w-full lg:max-w-xl mb-5 lg:mb-0 min-w-[200px]">
           <div className="relative flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +65,8 @@ const SearchAndSorting = ({ setCamps, setColumn }) => {
             </button>
           </div>
         </div>
-        <div className="flex gap-10">
-          <div className="w-72 ">
+        <div className="lg:flex space-y-5 lg:space-y-0 gap-10">
+          <div className="lg:w-72 ">
             <Select
               color="blue"
               className=" text-camp-text"

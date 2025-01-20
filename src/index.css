@@ -54,3 +54,7 @@ body {
     transform: translateY(0);
   }
 }
+
+.box-border {
+  max-width: 240px;
+}

@@ -10,11 +10,13 @@ const HeaderDashboard = ({ title }) => {
 
   return (
     <div className="bg-camp-info p-4 ">
-      <div className="flex justify-between items-center w-full">
-        <div className="flex items-center gap-1">
-          <h3 className="text-lg font-semibold text-gray-700">Dashboard</h3>
-          <FaAngleRight className="text-gray-700 " />
-          <p className="text-gray-700 text-sm">{title}</p>
+      <div className="flex justify-end lg:justify-between items-center w-full">
+        <div className="hidden lg:block gap-1">
+          <div className="flex items-center">
+            <h3 className="text-lg font-semibold text-gray-700">Dashboard</h3>
+            <FaAngleRight className="text-gray-700 " />
+            <p className="text-gray-700 text-sm">{title}</p>
+          </div>
         </div>
         <div className="flex items-center gap-4 mr-3">
           <h3 className="text-gray-700 font-semibold">{user?.displayName}</h3>

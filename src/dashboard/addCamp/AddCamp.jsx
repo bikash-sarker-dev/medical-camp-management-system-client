@@ -56,9 +56,9 @@ const AddCamp = () => {
       <h1 className="text-center my-10 text-3xl font-bold text-camp-primary">
         Add Camp
       </h1>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-3">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="flex gap-4">
+          <div className="md:flex gap-4">
             <div className="w-full">
               <Typography
                 variant="small"
@@ -105,7 +105,7 @@ const AddCamp = () => {
               />
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="md:flex gap-4">
             <div className="w-full">
               <Typography
                 variant="small"
@@ -153,7 +153,7 @@ const AddCamp = () => {
               />
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="md:flex gap-4">
             <div className="w-full">
               <Typography
                 variant="small"
