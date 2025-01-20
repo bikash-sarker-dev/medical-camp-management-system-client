@@ -32,3 +32,25 @@ body {
 .swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: -0px !important;
 }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  animation-duration: 0.7s;
+  animation-name: fadeInDown;
+  animation-timing-function: ease-out;
+  z-index: 999;
+  border-bottom: 1px solid #ccc;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

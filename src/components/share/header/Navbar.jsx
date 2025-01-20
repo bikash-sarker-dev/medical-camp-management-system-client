@@ -5,7 +5,7 @@ import {
   Navbar,
   Typography,
 } from "@material-tailwind/react";
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import ProfileAvatar from "./ProfileAvatar";
@@ -92,12 +92,19 @@ function NavList() {
 }
 
 export default function NavbarSimple() {
-  const [openNav, setOpenNav] = React.useState(false);
+  const [openNav, setOpenNav] = useState(false);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScroll(window.scrollY > 5);
+    });
+  });
 
   const handleWindowResize = () =>
     window.innerWidth >= 960 && setOpenNav(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
@@ -106,7 +113,11 @@ export default function NavbarSimple() {
   }, []);
 
   return (
-    <div className="bg-camp-primary">
+    <div
+      className={` bg-camp-primary ${
+        scroll ? "sticky w-full bg-camp-primary " : ""
+      }`}
+    >
       <Navbar className="mx-auto max-w-screen-xl bg-camp-primary border-none bg-opacity-100 shadow-none px-6 py-3 ">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
