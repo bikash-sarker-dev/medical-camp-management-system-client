@@ -26,6 +26,8 @@ const ManageProfile = () => {
   const axiosPublic = useAxiosPublic();
   const [open, setOpen] = React.useState(false);
 
+  const firstCharacter = user?.displayName?.split("")[0];
+
   const {
     register,
     handleSubmit,
@@ -105,7 +107,7 @@ const ManageProfile = () => {
             ) : (
               <div>
                 <div className="w-52 h-52 bg-camp-info flex justify-center items-center text-7xl font-semibold text-camp-primary rounded-full">
-                  <span>p</span>
+                  <span className="uppercase">{firstCharacter}</span>
                 </div>
               </div>
             )}

@@ -174,6 +174,15 @@ const DashboardLayout = () => {
                 </List>
               </>
             )}
+            <hr className="mt-6 border border-camp-secondary" />
+            <Link to="/">
+              <ListItem className="text-camp-background mt-3">
+                <ListItemPrefix>
+                  <PresentationChartBarIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Home Page
+              </ListItem>
+            </Link>
           </Card>
         </div>
         <div className="w-full">
