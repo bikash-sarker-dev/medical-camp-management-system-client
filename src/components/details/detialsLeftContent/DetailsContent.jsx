@@ -84,7 +84,7 @@ const DetailsContent = () => {
         data-aos-duration="2000"
         className="hero min-h-screen container"
       >
-        <div className="flex-col my-20">
+        <div className="md:flex-col my-20">
           <img
             src={Image}
             className=" my-10 rounded-lg shadow-2xl md:min-w-[700px] lg:max-h-[700px]"
@@ -92,20 +92,20 @@ const DetailsContent = () => {
           <div>
             <h1 className="text-3xl font-bold">{CampName}</h1>
 
-            <p className="text-gray-700 flex-1 mt-3 font-medium">
+            <p className="text-gray-700 md:flex-1 mt-3 font-medium">
               Health care Professional: {HealthcareProfessional}
             </p>
-            <p className="text-gray-700 flex-1 mt-3 font-medium"></p>
+            <p className="text-gray-700 md:flex-1 mt-3 font-medium"></p>
 
-            <p className="text-gray-700 flex-1 mt-3 font-medium">
+            <p className="text-gray-700 md:flex-1 mt-3 font-medium">
               date or time: {DateAndTime}
             </p>
 
-            <p className="text-gray-700 flex-1 mt-3 font-medium">
+            <p className="text-gray-700 md:flex-1 mt-3 font-medium">
               location: {Location}
             </p>
 
-            <p className="text-gray-700 flex-1 mt-3 font-medium">
+            <p className="text-gray-700 md:flex-1 mt-3 font-medium">
               Participant Count: {ParticipantCount}
             </p>
 
@@ -140,8 +140,8 @@ const DetailsContent = () => {
           </IconButton>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogBody className="space-y-3">
-            <div className="flex gap-4">
+          <DialogBody className="space-y-3 h-[400px] lg:h-auto overflow-auto">
+            <div className="md:flex gap-4">
               <div className="w-full">
                 <Typography
                   variant="small"
@@ -192,7 +192,7 @@ const DetailsContent = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="md:flex gap-4">
               <div className="w-full">
                 <Typography
                   variant="small"
@@ -242,7 +242,7 @@ const DetailsContent = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="md:flex gap-4">
               <div className="w-full">
                 <Typography
                   variant="small"
@@ -292,7 +292,7 @@ const DetailsContent = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="md:flex gap-4">
               <div className="w-full">
                 <Typography
                   variant="small"
@@ -370,7 +370,7 @@ const DetailsContent = () => {
               >
                 Gender
               </Typography>
-              <div className="flex gap-8">
+              <div className="md:flex gap-8">
                 <Radio
                   label="Male"
                   value="male"

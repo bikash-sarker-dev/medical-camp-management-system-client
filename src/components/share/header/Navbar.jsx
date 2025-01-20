@@ -40,19 +40,7 @@ function NavList() {
           Available Camps
         </Link>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/join"
-          className="flex items-center text-camp-background text-base transition-colors"
-        >
-          Join us
-        </Link>
-      </Typography>
+
       {user && user?.email ? (
         <>
           <ProfileAvatar />

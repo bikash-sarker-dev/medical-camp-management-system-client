@@ -2,7 +2,7 @@ import { Button, Carousel, Typography } from "@material-tailwind/react";
 
 export default function CarouselWithContent() {
   return (
-    <div className="h-[750px] ">
+    <div className="lg:h-[750px]  h-[500px]">
       <Carousel className="">
         <div className="relative h-full w-full">
           <img
@@ -12,7 +12,7 @@ export default function CarouselWithContent() {
           />
           <div className="absolute inset-0 grid h-full w-full items-center bg-black/75">
             <div className="container">
-              <div className="w-3/4  md:w-2/4 md:pl-20 ">
+              <div className="w-3/4  md:w-2/4 md:pl-20  text-center mx-auto lg:mx-0 lg:text-left">
                 <Typography
                   variant="h1"
                   color="white"
@@ -29,8 +29,12 @@ export default function CarouselWithContent() {
                   such as measles and polio, ensuring the health of the next
                   generation in the community.
                 </Typography>
-                <div className="flex gap-2">
-                  <Button size="lg" color="white" className="px-14">
+                <div className="flex gap-2 text-center justify-center lg:justify-start ">
+                  <Button
+                    size="lg"
+                    color="white"
+                    className="px-14 bg-camp-accent text-white"
+                  >
                     Explore
                   </Button>
                 </div>
@@ -63,7 +67,11 @@ export default function CarouselWithContent() {
                 nearby hospital saved his life.
               </Typography>
               <div className="flex justify-center gap-2">
-                <Button size="lg" color="white" className="px-14">
+                <Button
+                  size="lg"
+                  color="white"
+                  className="px-14 bg-camp-accent text-white"
+                >
                   Explore
                 </Button>
               </div>
