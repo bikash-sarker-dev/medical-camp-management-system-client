@@ -15,7 +15,7 @@ import useOrganizer from "../../../hooks/useOrganizer";
 
 const ProfileAvatar = () => {
   const { user, accountLogOut } = useAuth();
-  console.log(user);
+
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const closeMenu = () => setIsMenuOpen(false);

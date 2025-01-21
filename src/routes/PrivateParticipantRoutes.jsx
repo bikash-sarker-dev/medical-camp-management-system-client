@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import LoadingPage from "../pages/LoadingPage";
 import useAuth from "./../hooks/useAuth";
 
 const PrivateParticipantRoutes = ({ children }) => {
@@ -7,7 +8,7 @@ const PrivateParticipantRoutes = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <h2>Loading.........</h2>;
+    return <LoadingPage />;
   }
 
   if (user && user.email) {

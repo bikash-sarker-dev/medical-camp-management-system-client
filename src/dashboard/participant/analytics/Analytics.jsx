@@ -32,8 +32,6 @@ const Analytics = () => {
     },
   });
 
-  console.log(participantAnalyticsJoin);
-
   //   participant Stat Analytics
   const { data: participantAnalytics = {} } = useQuery({
     queryKey: ["analytics"],
@@ -44,14 +42,14 @@ const Analytics = () => {
       return res.data;
     },
   });
-  console.log(participantAnalytics);
+
   const {
     totalFess,
     totalJoin,
     joinPaymentStatusPaid,
     joinConfirmationPendingCount,
     joinConfirmationConfirmedCount,
-  } = participantAnalytics;
+  } = participantAnalytics || {};
 
   return (
     <div>
@@ -84,7 +82,7 @@ const Analytics = () => {
                   <FaUsers className=" lg:text-7xl text-3xl text-cyan-400 " />
                 </div>
                 <Typography className=" lg:text-7xl text-3xl font-bold ">
-                  {totalJoin}
+                  {totalJoin ? totalJoin : "0"}
                 </Typography>
               </div>
             </CardBody>
@@ -99,7 +97,7 @@ const Analytics = () => {
                   <IoShieldCheckmark className=" lg:text-7xl text-3xl text-green-500" />
                 </div>
                 <Typography className=" lg:text-7xl text-3xl font-bold">
-                  {joinPaymentStatusPaid}
+                  {joinPaymentStatusPaid ? joinPaymentStatusPaid : "0"}
                 </Typography>
               </div>
             </CardBody>
@@ -114,7 +112,9 @@ const Analytics = () => {
                   <HiMiniPlayPause className=" lg:text-7xl text-3xl text-purple-500" />
                 </div>
                 <Typography className=" lg:text-7xl text-3xl font-bold">
-                  {joinConfirmationPendingCount}
+                  {joinConfirmationPendingCount
+                    ? joinConfirmationPendingCount
+                    : "0"}
                 </Typography>
               </div>
             </CardBody>

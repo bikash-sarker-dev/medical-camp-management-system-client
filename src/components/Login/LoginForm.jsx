@@ -21,7 +21,6 @@ const LoginForm = () => {
     accountLogin(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         toast.success("Successfully login . welcome Home page.");
         navigate("/");
       })

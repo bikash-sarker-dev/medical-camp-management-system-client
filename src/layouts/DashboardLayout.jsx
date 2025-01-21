@@ -26,6 +26,7 @@ import useAuth from "./../hooks/useAuth";
 
 const DashboardLayout = () => {
   const [isOrganize, isLoading] = useOrganizer();
+  console.log(isOrganize);
   const { accountLogOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(0);

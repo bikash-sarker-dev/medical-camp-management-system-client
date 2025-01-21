@@ -138,36 +138,36 @@ const ManageCamps = () => {
             </CardHeader>
           </div>
           {/* table camps  */}
-          <div className="p-6 px-0 overflow-scroll">
+          <div className="p-6 px-0 overflow-scroll hidden md:block">
             <table className="w-full text-left table-auto min-w-max">
-              <thead className="bg-camp-info">
-                <tr>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              <thead className="bg-camp-info ">
+                <tr className="">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
+                    <p className="block  font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       Camp Name
                     </p>
                   </th>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
                     <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       Camp Fees
                     </p>
                   </th>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
                     <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       Date and Time
                     </p>
                   </th>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
                     <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       Location
                     </p>
                   </th>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
                     <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       Healthcare Professional
                     </p>
                   </th>
-                  <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <th className="p-4 border-b border-blue-gray-100 bg-camp-info ">
                     <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                       {" "}
                       Action
@@ -183,34 +183,34 @@ const ManageCamps = () => {
                         <img
                           src={camp.Image}
                           alt="Spotify"
-                          className="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1"
+                          className="relative inline-block h-12 w-12 !rounded-full  bg-blue-gray-50/50 object-contain object-center p-1"
                         />
                         <p className="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
                           {camp.CampName}
                         </p>
                       </div>
                     </td>
-                    <td className="p-4 border-b border-blue-gray-50">
+                    <td className="p-4 text-right">
                       <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         ${camp.CampFees}
                       </p>
                     </td>
-                    <td className="p-4 border-b border-blue-gray-50">
+                    <td className="p-4 text-right">
                       <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         {camp.DateAndTime}
                       </p>
                     </td>
-                    <td className="p-4 border-b border-blue-gray-50">
+                    <td className="p-4 text-right">
                       <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         {camp.Location}
                       </p>
                     </td>
-                    <td className="p-4 border-b border-blue-gray-50">
+                    <td className="p-4 text-right">
                       <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         {camp.HealthcareProfessional}
                       </p>
                     </td>
-                    <td className="p-4 border-b border-blue-gray-50 space-x-3">
+                    <td className="p-4 text-right space-x-3">
                       <button
                         onClick={() => handleUpdateCamp(camp)}
                         className="bg-camp-secondary p-2 rounded-md text-camp-background text-xl"
@@ -227,6 +227,98 @@ const ManageCamps = () => {
                       </button>
                     </td>
                   </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* phone table  */}
+          <div className="p-6 px-0  md:hidden">
+            <table className="w-full">
+              <tbody>
+                {camps.map((camp) => (
+                  <div className="flex p-3 mb-5 bg-camp-info">
+                    <tr className="flex flex-col flex-1 text-left">
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          Camp Name
+                        </p>
+                      </th>
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          Camp Fees
+                        </p>
+                      </th>
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          Date and Time
+                        </p>
+                      </th>
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          Location
+                        </p>
+                      </th>
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          Healthcare Professional
+                        </p>
+                      </th>
+                      <th className="my-5">
+                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                          {" "}
+                          Action
+                        </p>
+                      </th>
+                    </tr>
+                    <tr
+                      key={camp._id}
+                      className=" flex flex-col flex-1 text-right"
+                    >
+                      <td className="px-4 py-2 text-right">
+                        <div className=" text-right items-center gap-3">
+                          <p className="block text-right font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                            {camp.CampName}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="p-4 text-right">
+                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                          ${camp.CampFees}
+                        </p>
+                      </td>
+                      <td className="p-4 text-right">
+                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                          {camp.DateAndTime}
+                        </p>
+                      </td>
+                      <td className="p-4 text-right">
+                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                          {camp.Location}
+                        </p>
+                      </td>
+                      <td className="p-4 text-right">
+                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                          {camp.HealthcareProfessional}
+                        </p>
+                      </td>
+                      <td className="p-4 text-right space-x-3">
+                        <button
+                          onClick={() => handleUpdateCamp(camp)}
+                          className="bg-camp-secondary p-2 rounded-md text-camp-background text-xl"
+                          type="button"
+                        >
+                          <FaPencil />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCamp(camp)}
+                          className="bg-red-500 p-2 rounded-md text-camp-background text-xl"
+                          type="button"
+                        >
+                          <RiDeleteBin5Line />
+                        </button>
+                      </td>
+                    </tr>
+                  </div>
                 ))}
               </tbody>
             </table>

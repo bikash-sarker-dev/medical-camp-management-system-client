@@ -25,7 +25,7 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-  console.log(paymentHistory);
+
   return (
     <div>
       <HeaderDashboard title={"Payment history"} />

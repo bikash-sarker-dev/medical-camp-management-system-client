@@ -21,7 +21,6 @@ const ManageProfile = () => {
   const { user } = useAuth();
   const auth = getAuth();
   const [profile, refetch] = uesProfile();
-  console.log(profile);
 
   const axiosPublic = useAxiosPublic();
   const [open, setOpen] = React.useState(false);

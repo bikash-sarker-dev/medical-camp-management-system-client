@@ -46,7 +46,9 @@ const HomeDashboard = () => {
                 <div>
                   <FaUsers className="text-7xl text-cyan-400 " />
                 </div>
-                <Typography className="text-7xl font-bold ">{joins}</Typography>
+                <Typography className="text-7xl font-bold ">
+                  {joins ? joins : "0"}
+                </Typography>
               </div>
             </CardBody>
           </Card>
@@ -59,7 +61,10 @@ const HomeDashboard = () => {
                 <div>
                   <FaUserAlt className="text-7xl text-green-500" />
                 </div>
-                <Typography className="text-7xl font-bold">{users}</Typography>
+                <Typography className="text-7xl font-bold">
+                  {" "}
+                  {users ? users : "0"}
+                </Typography>
               </div>
             </CardBody>
           </Card>
@@ -73,7 +78,7 @@ const HomeDashboard = () => {
                   <FaStar className="text-7xl text-orange-500" />
                 </div>
                 <Typography className="text-7xl font-bold">
-                  {feedbacks}
+                  {feedbacks ? feedbacks : "0"}
                 </Typography>
               </div>
             </CardBody>
