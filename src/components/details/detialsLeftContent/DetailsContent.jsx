@@ -13,13 +13,14 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const DetailsContent = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const axiosPublic = useAxiosPublic();
   const { id } = useParams();
@@ -30,10 +31,17 @@ const DetailsContent = () => {
     formState: { errors },
   } = useForm();
 
-  const handleOpen = () => setOpen(!open);
-  const doc = {
-    title: "Record of a Shriveled Datum",
-    content: "No bytes, no problem. Just insert a document, in MongoDB",
+  const handleOpen = () => {
+    if (user) {
+      setOpen(!open);
+    } else {
+      Swal.fire({
+        title: "You are not login.",
+        text: "Please login in . then join the camp.",
+        icon: "question",
+      });
+      navigate("/login");
+    }
   };
 
   const onSubmit = async (data) => {

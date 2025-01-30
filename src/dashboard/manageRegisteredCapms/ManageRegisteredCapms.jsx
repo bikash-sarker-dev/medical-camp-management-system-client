@@ -19,6 +19,7 @@ const ManageRegisteredCamps = () => {
   const secureAxios = useSecureAxios();
   const [search, setSearch] = useState("");
   const [allJoin, setAllJoin] = useState([]);
+  const [isWash, setIsWash] = useState(false);
 
   // const { data: joinCamps = [], refetch } = useQuery({
   //   queryKey: ["joinCamps"],
@@ -32,10 +33,11 @@ const ManageRegisteredCamps = () => {
     secureAxios.get(`/join-search?search=${search}`).then((res) => {
       setAllJoin(res.data);
     });
-  }, [search]);
+  }, [search, isWash]);
 
   //   join camp deleted working
   const handleDeleteJoinCamp = (JoinItemCamp) => {
+    setIsWash(true);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -50,12 +52,12 @@ const ManageRegisteredCamps = () => {
           `/delete-join-camps/${JoinItemCamp._id}`
         );
         if (res.data.deletedCount > 0) {
-          refetch();
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success",
           });
+          setIsWash(false);
         }
       }
     });
@@ -63,6 +65,7 @@ const ManageRegisteredCamps = () => {
 
   //   join camp status update working
   const handleUpdateStatusJoinCamp = (JoinItemCamp) => {
+    setIsWash(true);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be payment status and confirmation status update",
@@ -77,12 +80,12 @@ const ManageRegisteredCamps = () => {
           `/update-join-camps/${JoinItemCamp._id}`
         );
         if (res.data.modifiedCount > 0) {
-          refetch();
           Swal.fire({
             title: "Updated!",
             text: "Your file has been updated.",
             icon: "success",
           });
+          setIsWash(false);
         }
       }
     });
@@ -130,9 +133,125 @@ const ManageRegisteredCamps = () => {
             </thead>
             <tbody>
               {allJoin.map((joinItem) => (
-                <>
-                  <tr className="" key={joinItem._id}>
-                    <td className=" p-4 border-b border-blue-gray-50">
+                <tr className="" key={joinItem._id}>
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {joinItem.participantName}
+                    </Typography>
+                  </td>
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {joinItem.campName}
+                    </Typography>
+                  </td>
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      $ {joinItem.campFees}
+                    </Typography>
+                  </td>
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className={`font-semibold  p-1 rounded-md inline-block px-3 ${
+                        joinItem.PaymentStatus === "paid" &&
+                        joinItem.Confirmation === "confirmed"
+                          ? "bg-green-100 "
+                          : "bg-yellow-100"
+                      }`}
+                    >
+                      {joinItem.PaymentStatus}
+                    </Typography>
+                  </td>
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className={`font-semibold  p-1 rounded-md inline-block px-3 ${
+                        joinItem.PaymentStatus === "paid" &&
+                        joinItem.Confirmation === "confirmed"
+                          ? "bg-green-100 "
+                          : "bg-yellow-100"
+                      }`}
+                    >
+                      {joinItem.Confirmation}
+                    </Typography>
+                  </td>
+
+                  <td className=" p-4 border-b border-blue-gray-50">
+                    <Typography
+                      as="a"
+                      href="#"
+                      variant="small"
+                      color="blue-gray"
+                      className="font-medium "
+                    >
+                      {joinItem.PaymentStatus === "paid" &&
+                      joinItem.Confirmation === "confirmed" ? (
+                        <>
+                          <button
+                            onClick={() => handleDeleteJoinCamp(joinItem)}
+                            className="bg-red-500  p-2 rounded-sm text-camp-background mx-1 ml-[42px]"
+                          >
+                            <FaTimes className="" />
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleUpdateStatusJoinCamp(joinItem)}
+                            className="bg-green-500  p-2 rounded-sm text-camp-background mx-1"
+                          >
+                            <FaCheck />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteJoinCamp(joinItem)}
+                            className="bg-red-500  p-2 rounded-sm text-camp-background mx-1"
+                          >
+                            <FaTimes className="" />
+                          </button>
+                        </>
+                      )}
+                    </Typography>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Card>
+        {/* phone  */}
+        <div className="md:hidden block">
+          <Card className=" w-full overflow-scroll h-[700px]">
+            <table className="w-full min-w-max table-auto text-left ">
+              {allJoin.map((joinItem) => (
+                <tbody key={joinItem._id} className="flex bg-camp-default mb-6">
+                  <tr className="flex flex-col flex-1">
+                    {TABLE_HEAD.map((head) => (
+                      <th key={head} className=" py-[18px]  p-4">
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal leading-none opacity-70"
+                        >
+                          {head}
+                        </Typography>
+                      </th>
+                    ))}
+                  </tr>
+                  <tr className=" flex flex-col flex-1" key={joinItem._id}>
+                    <td className=" p-3 ">
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -141,7 +260,7 @@ const ManageRegisteredCamps = () => {
                         {joinItem.participantName}
                       </Typography>
                     </td>
-                    <td className=" p-4 border-b border-blue-gray-50">
+                    <td className=" p-3 ">
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -150,7 +269,7 @@ const ManageRegisteredCamps = () => {
                         {joinItem.campName}
                       </Typography>
                     </td>
-                    <td className=" p-4 border-b border-blue-gray-50">
+                    <td className=" p-3 ">
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -159,7 +278,7 @@ const ManageRegisteredCamps = () => {
                         $ {joinItem.campFees}
                       </Typography>
                     </td>
-                    <td className=" p-4 border-b border-blue-gray-50">
+                    <td className=" p-3 ">
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -173,7 +292,7 @@ const ManageRegisteredCamps = () => {
                         {joinItem.PaymentStatus}
                       </Typography>
                     </td>
-                    <td className=" p-4 border-b border-blue-gray-50">
+                    <td className=" p-3 ">
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -227,130 +346,8 @@ const ManageRegisteredCamps = () => {
                       </Typography>
                     </td>
                   </tr>
-                </>
+                </tbody>
               ))}
-            </tbody>
-          </table>
-        </Card>
-        {/* phone  */}
-        <div className="md:hidden block">
-          <Card className=" w-full overflow-scroll h-[700px]">
-            <table className="w-full min-w-max table-auto text-left ">
-              <tbody>
-                {allJoin.map((joinItem) => (
-                  <div className="flex bg-camp-default mb-6">
-                    <tr className="flex flex-col flex-1">
-                      {TABLE_HEAD.map((head) => (
-                        <th key={head} className=" py-[18px]  p-4">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal leading-none opacity-70"
-                          >
-                            {head}
-                          </Typography>
-                        </th>
-                      ))}
-                    </tr>
-                    <tr className=" flex flex-col flex-1" key={joinItem._id}>
-                      <td className=" p-3 ">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {joinItem.participantName}
-                        </Typography>
-                      </td>
-                      <td className=" p-3 ">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {joinItem.campName}
-                        </Typography>
-                      </td>
-                      <td className=" p-3 ">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          $ {joinItem.campFees}
-                        </Typography>
-                      </td>
-                      <td className=" p-3 ">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className={`font-semibold  p-1 rounded-md inline-block px-3 ${
-                            joinItem.PaymentStatus === "paid" &&
-                            joinItem.Confirmation === "confirmed"
-                              ? "bg-green-100 "
-                              : "bg-yellow-100"
-                          }`}
-                        >
-                          {joinItem.PaymentStatus}
-                        </Typography>
-                      </td>
-                      <td className=" p-3 ">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className={`font-semibold  p-1 rounded-md inline-block px-3 ${
-                            joinItem.PaymentStatus === "paid" &&
-                            joinItem.Confirmation === "confirmed"
-                              ? "bg-green-100 "
-                              : "bg-yellow-100"
-                          }`}
-                        >
-                          {joinItem.Confirmation}
-                        </Typography>
-                      </td>
-
-                      <td className=" p-4 border-b border-blue-gray-50">
-                        <Typography
-                          as="a"
-                          href="#"
-                          variant="small"
-                          color="blue-gray"
-                          className="font-medium "
-                        >
-                          {joinItem.PaymentStatus === "paid" &&
-                          joinItem.Confirmation === "confirmed" ? (
-                            <>
-                              <button
-                                onClick={() => handleDeleteJoinCamp(joinItem)}
-                                className="bg-red-500  p-2 rounded-sm text-camp-background mx-1 ml-[42px]"
-                              >
-                                <FaTimes className="" />
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() =>
-                                  handleUpdateStatusJoinCamp(joinItem)
-                                }
-                                className="bg-green-500  p-2 rounded-sm text-camp-background mx-1"
-                              >
-                                <FaCheck />
-                              </button>
-                              <button
-                                onClick={() => handleDeleteJoinCamp(joinItem)}
-                                className="bg-red-500  p-2 rounded-sm text-camp-background mx-1"
-                              >
-                                <FaTimes className="" />
-                              </button>
-                            </>
-                          )}
-                        </Typography>
-                      </td>
-                    </tr>
-                  </div>
-                ))}
-              </tbody>
             </table>
           </Card>
         </div>

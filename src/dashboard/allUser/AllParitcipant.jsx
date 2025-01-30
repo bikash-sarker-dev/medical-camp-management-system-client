@@ -138,79 +138,80 @@ const AllParticipant = () => {
       <div className="mt-12 px-2  md:hidden">
         <div className="">
           <table className="w-full">
-            <tbody className="w-full ">
-              {participants.map((participant) => (
-                <div className="flex bg-camp-info mb-4 rounded-lg p-3">
-                  <tr className="flex flex-col flex-1 text-left">
-                    <th className="py-4 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        Participant Name
-                      </p>
-                    </th>
-                    <th className="py-4 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        Email
-                      </p>
-                    </th>
-                    <th className="py-4 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        Role
-                      </p>
-                    </th>
-                    <th className="py-4 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                        {" "}
-                        Action
-                      </p>
-                    </th>
-                  </tr>
-                  {/* body  */}
-                  <tr className="flex flex-col flex-1" key={participant._id}>
-                    <td className="py-3 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                        {participant.name}
-                      </p>
-                    </td>
-                    <td className="py-3 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                        {participant.email}
-                      </p>
-                    </td>
-                    <td className="py-3 ">
-                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                        {participant.role ? (
-                          <>
-                            <span className=" text-camp-primary font-semibold">
-                              Organizer
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <Button
-                              onClick={() => handleAdmin(participant)}
-                              size="sm"
-                              className="bg-camp-secondary flex gap-1"
-                            >
-                              <FaUser /> Add Organizer
-                            </Button>
-                          </>
-                        )}
-                      </p>
-                    </td>
-                    <td className="py-3 ">
-                      <Button
-                        onClick={() => handleDeleteParticipant(participant)}
-                        size="sm"
-                        href="#"
-                        className="block font-sans text-md bg-red-500 antialiased font-medium leading-normal text-camp-background "
-                      >
-                        <RiDeleteBin5Line />
-                      </Button>
-                    </td>
-                  </tr>
-                </div>
-              ))}
-            </tbody>
+            {participants.map((participant) => (
+              <tbody
+                key={participant._id}
+                className="flex bg-camp-info mb-4 rounded-lg p-3"
+              >
+                <tr className="flex flex-col flex-1 text-left">
+                  <th className="py-4 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Participant Name
+                    </p>
+                  </th>
+                  <th className="py-4 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Email
+                    </p>
+                  </th>
+                  <th className="py-4 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      Role
+                    </p>
+                  </th>
+                  <th className="py-4 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                      {" "}
+                      Action
+                    </p>
+                  </th>
+                </tr>
+                {/* body  */}
+                <tr className="flex flex-col flex-1" key={participant._id}>
+                  <td className="py-3 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                      {participant.name}
+                    </p>
+                  </td>
+                  <td className="py-3 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                      {participant.email}
+                    </p>
+                  </td>
+                  <td className="py-3 ">
+                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                      {participant.role ? (
+                        <>
+                          <span className=" text-camp-primary font-semibold">
+                            Organizer
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <Button
+                            onClick={() => handleAdmin(participant)}
+                            size="sm"
+                            className="bg-camp-secondary flex gap-1"
+                          >
+                            <FaUser /> Add Organizer
+                          </Button>
+                        </>
+                      )}
+                    </p>
+                  </td>
+                  <td className="py-3 ">
+                    <Button
+                      onClick={() => handleDeleteParticipant(participant)}
+                      size="sm"
+                      href="#"
+                      className="block font-sans text-md bg-red-500 antialiased font-medium leading-normal text-camp-background "
+                    >
+                      <RiDeleteBin5Line />
+                    </Button>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
           </table>
         </div>
       </div>

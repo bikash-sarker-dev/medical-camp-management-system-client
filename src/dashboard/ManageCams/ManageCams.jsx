@@ -31,6 +31,7 @@ const ManageCamps = () => {
   const [search, setSearch] = useState("");
   const [upCamp, setUpCamp] = useState("");
   const [camps, setCamps] = useState([]);
+  const [isWash, setIsWash] = useState(false);
   const {
     register,
     handleSubmit,
@@ -43,7 +44,7 @@ const ManageCamps = () => {
     secureAxios.get(`/camp-search?search=${search}`).then((res) => {
       setCamps(res.data);
     });
-  }, [search]);
+  }, [search, isWash]);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -51,6 +52,7 @@ const ManageCamps = () => {
   };
   //   delete function
   const handleDeleteCamp = (camp) => {
+    setIsWash(true);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -63,12 +65,12 @@ const ManageCamps = () => {
       if (result.isConfirmed) {
         const res = await secureAxios.delete(`/camps/${camp._id}`);
         if (res.data.deletedCount > 0) {
-          refetch();
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success",
           });
+          setIsWash(false);
         }
       }
     });
@@ -81,7 +83,8 @@ const ManageCamps = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
+    setIsWash(true);
+
     const imageFile = { image: data.photo[0] };
 
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -104,17 +107,17 @@ const ManageCamps = () => {
         `/update-camp/${upCamp._id}`,
         campItem
       );
-      console.log(res2.data);
+
       if (res2.data.modifiedCount > 0) {
+        setIsWash(false);
         setOpen(false);
-        refetch();
+
         toast.success("Your Camp Data Update successfully");
       }
       reset();
     }
   };
 
-  console.log(search);
   return (
     <div>
       <HeaderDashboard title={"Manage Camps"} />
@@ -234,93 +237,91 @@ const ManageCamps = () => {
           {/* phone table  */}
           <div className="p-6 px-0  md:hidden">
             <table className="w-full">
-              <tbody>
-                {camps.map((camp) => (
-                  <div className="flex p-3 mb-5 bg-camp-info">
-                    <tr className="flex flex-col flex-1 text-left">
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          Camp Name
+              {camps.map((camp) => (
+                <tbody key={camp._id} className="flex p-3 mb-5 bg-camp-info">
+                  <tr className="flex flex-col flex-1 text-left">
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Camp Name
+                      </p>
+                    </th>
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Camp Fees
+                      </p>
+                    </th>
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Date and Time
+                      </p>
+                    </th>
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Location
+                      </p>
+                    </th>
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Healthcare Professional
+                      </p>
+                    </th>
+                    <th className="my-5">
+                      <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        {" "}
+                        Action
+                      </p>
+                    </th>
+                  </tr>
+                  <tr
+                    key={camp._id}
+                    className=" flex flex-col flex-1 text-right"
+                  >
+                    <td className="px-4 py-2 text-right">
+                      <div className=" text-right items-center gap-3">
+                        <p className="block text-right font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                          {camp.CampName}
                         </p>
-                      </th>
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          Camp Fees
-                        </p>
-                      </th>
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          Date and Time
-                        </p>
-                      </th>
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          Location
-                        </p>
-                      </th>
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          Healthcare Professional
-                        </p>
-                      </th>
-                      <th className="my-5">
-                        <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                          {" "}
-                          Action
-                        </p>
-                      </th>
-                    </tr>
-                    <tr
-                      key={camp._id}
-                      className=" flex flex-col flex-1 text-right"
-                    >
-                      <td className="px-4 py-2 text-right">
-                        <div className=" text-right items-center gap-3">
-                          <p className="block text-right font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
-                            {camp.CampName}
-                          </p>
-                        </div>
-                      </td>
-                      <td className="p-4 text-right">
-                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                          ${camp.CampFees}
-                        </p>
-                      </td>
-                      <td className="p-4 text-right">
-                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                          {camp.DateAndTime}
-                        </p>
-                      </td>
-                      <td className="p-4 text-right">
-                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                          {camp.Location}
-                        </p>
-                      </td>
-                      <td className="p-4 text-right">
-                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                          {camp.HealthcareProfessional}
-                        </p>
-                      </td>
-                      <td className="p-4 text-right space-x-3">
-                        <button
-                          onClick={() => handleUpdateCamp(camp)}
-                          className="bg-camp-secondary p-2 rounded-md text-camp-background text-xl"
-                          type="button"
-                        >
-                          <FaPencil />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteCamp(camp)}
-                          className="bg-red-500 p-2 rounded-md text-camp-background text-xl"
-                          type="button"
-                        >
-                          <RiDeleteBin5Line />
-                        </button>
-                      </td>
-                    </tr>
-                  </div>
-                ))}
-              </tbody>
+                      </div>
+                    </td>
+                    <td className="p-4 text-right">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        ${camp.CampFees}
+                      </p>
+                    </td>
+                    <td className="p-4 text-right">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.DateAndTime}
+                      </p>
+                    </td>
+                    <td className="p-4 text-right">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.Location}
+                      </p>
+                    </td>
+                    <td className="p-4 text-right">
+                      <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                        {camp.HealthcareProfessional}
+                      </p>
+                    </td>
+                    <td className="p-4 text-right space-x-3">
+                      <button
+                        onClick={() => handleUpdateCamp(camp)}
+                        className="bg-camp-secondary p-2 rounded-md text-camp-background text-xl"
+                        type="button"
+                      >
+                        <FaPencil />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCamp(camp)}
+                        className="bg-red-500 p-2 rounded-md text-camp-background text-xl"
+                        type="button"
+                      >
+                        <RiDeleteBin5Line />
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
             </table>
           </div>
         </div>
