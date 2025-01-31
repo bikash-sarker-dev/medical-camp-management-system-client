@@ -60,13 +60,14 @@ This web app works to manage a medical camp. This project was worked on with bot
 - @tanstack/react-query
 - recharts
 
-#### Client GitHub repositories link:
+### Organizer or Admin Login
 
-- [https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-bikash-sarker-dev.git](https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-bikash-sarker-dev.git)
+- email: bikash@gmail.com
+- password: 123456
 
 #### Server GitHub repositories link:
 
-- [https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-bikash-sarker-dev.git](https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-bikash-sarker-dev.git)
+- [https://github.com/bikash-sarker-dev/medical-camp-management-system-server.git](https://github.com/bikash-sarker-dev/medical-camp-management-system-server.git)
 
 #### live website link:
 
