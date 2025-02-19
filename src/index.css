@@ -64,3 +64,15 @@ body {
 .box-border {
   max-width: 240px;
 }
+
+@media only screen and (max-width: 776px) {
+  .lg-react-element {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .lg-react-element {
+    grid-template-columns: 1fr;
+  }
+}
