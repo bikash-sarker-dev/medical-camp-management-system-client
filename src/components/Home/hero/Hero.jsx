@@ -5,7 +5,7 @@ import HeroLottieFile from "../../../assets/lottifile/heroLottie.json";
 export default function CarouselWithContent() {
   return (
     <div className="lg:h-[750px]  h-[500px]">
-      <Carousel autoplay={true} loop={true} number={7000} className="">
+      <Carousel autoplay={true} loop={true} autoplayDelay={7000} className="">
         <div className="relative h-full w-full">
           <img
             src="https://plus.unsplash.com/premium_photo-1661602138279-b72df3311296?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

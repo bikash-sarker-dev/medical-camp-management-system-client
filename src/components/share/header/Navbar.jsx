@@ -40,6 +40,45 @@ function NavList() {
           Available Camps
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Gallery
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Blogs
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/"
+          className="flex items-center text-camp-background text-base transition-colors"
+        >
+          Support
+        </Link>
+      </Typography>
 
       {user && user?.email ? (
         <>
