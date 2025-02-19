@@ -24,11 +24,7 @@ const Gallery = () => {
     },
   });
 
-  console.log(data);
-
-  const onInit = () => {
-    console.log("lightGallery has been initialized");
-  };
+  const onInit = () => {};
 
   return (
     <section className="my-24">
@@ -51,7 +47,7 @@ const Gallery = () => {
                 href={image.imageUrl}
               >
                 <img
-                  className="h-60 "
+                  className="h-60 w-full"
                   alt={`Image Id : ${image._id}`}
                   src={image.imageUrl}
                 />

@@ -1,4 +1,5 @@
 import React from "react";
+import Blogs from "../components/Home/blog/Blogs";
 import Research from "../components/Home/campResearch/Research";
 import Gallery from "../components/Home/gallery/Gallery";
 import CarouselWithContent from "../components/Home/hero/Hero";
@@ -15,6 +16,7 @@ const HomePage = () => {
       <ParticipantHighest />
       <Testimonials />
       <Gallery />
+      <Blogs />
     </div>
   );
 };
