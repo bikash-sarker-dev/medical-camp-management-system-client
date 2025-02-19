@@ -35,7 +35,6 @@ const LoginForm = () => {
 
           setLoading(false);
         }
-        console.log(errorMessage);
       });
   };
 
