@@ -1,6 +1,7 @@
 import React from "react";
 import Blogs from "../components/Home/blog/Blogs";
 import Research from "../components/Home/campResearch/Research";
+import Counter from "../components/Home/counter/Counter";
 import Gallery from "../components/Home/gallery/Gallery";
 import CarouselWithContent from "../components/Home/hero/Hero";
 import ParticipantHighest from "../components/Home/participantHighest/ParticipantHighest";
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Testimonials />
       <Gallery />
       <Blogs />
+      <Counter />
     </div>
   );
 };
