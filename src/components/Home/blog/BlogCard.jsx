@@ -12,13 +12,13 @@ const BlogCard = ({ blog }) => {
   return (
     <Card className="mt-6 ">
       <CardHeader color="blue-gray" className="relative h-56">
-        <img className="h-56 w-full" src={blog.image_url} alt="card-image" />
+        <img className="h-56 w-full" src={blog?.image_url} alt="card-image" />
       </CardHeader>
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
-          {blog.title}
+          {blog?.title}
         </Typography>
-        <Typography>Date: {blog.date}</Typography>
+        <Typography>Date: {blog?.date}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
         <a href="#" className="inline-block">
