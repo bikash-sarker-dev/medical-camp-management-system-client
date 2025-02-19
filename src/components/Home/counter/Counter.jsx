@@ -22,7 +22,7 @@ const Counter = () => {
                 <IoHappyOutline className="text-7xl text-camp-background" />
               </div>
               <h2 className="text-4xl font-extrabold my-2">
-                + <CountUp isCounting end={1320} duration={8.2} />
+                + <CountUp isCounting end={534} duration={8.2} />
               </h2>
               <h3 className="text-camp-info text-xl">Happy Clients</h3>
             </div>
