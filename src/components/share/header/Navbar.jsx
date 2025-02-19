@@ -63,7 +63,7 @@ function NavList() {
           to="/"
           className="flex items-center text-camp-background text-base transition-colors"
         >
-          Blogs
+          Blog
         </Link>
       </Typography>
       <Typography
