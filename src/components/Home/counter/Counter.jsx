@@ -6,7 +6,7 @@ import SectionHead from "./../../share/sectionHead/SectionHead";
 
 const Counter = () => {
   return (
-    <section className=" py-28 bg-[url('https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-blend-overlay bg-opacity-70 bg-black testimonials">
+    <section className=" py-28 bg-[url('https://images.pexels.com/photos/7231428/pexels-photo-7231428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-blend-overlay bg-opacity-70 bg-black testimonials">
       <div className="container">
         <SectionHead
           title={"Success Stat"}

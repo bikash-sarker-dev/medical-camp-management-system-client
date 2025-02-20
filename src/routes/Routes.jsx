@@ -20,6 +20,7 @@ import GalleryPage from "../pages/GalleryPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import SupportPage from "../pages/SupportPage";
 import PrivateOrganizerRoutes from "./PrivateOrganizerRoutes";
 import PrivateParticipantRoutes from "./PrivateParticipantRoutes";
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <BlogPage />,
+      },
+      {
+        path: "/support",
+        element: <SupportPage />,
       },
     ],
   },
