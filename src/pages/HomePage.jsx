@@ -4,6 +4,7 @@ import Research from "../components/Home/campResearch/Research";
 import Counter from "../components/Home/counter/Counter";
 import Gallery from "../components/Home/gallery/Gallery";
 import CarouselWithContent from "../components/Home/hero/Hero";
+import LatestCamps from "../components/Home/latestCamp/LatestCamps";
 import ParticipantHighest from "../components/Home/participantHighest/ParticipantHighest";
 import Testimonials from "../components/Home/testimonials/Testimonials";
 import TabTitle from "../components/share/htmlHead/TabTitle";
@@ -19,6 +20,7 @@ const HomePage = () => {
       <Gallery />
       <Blogs />
       <Counter />
+      <LatestCamps />
     </div>
   );
 };
