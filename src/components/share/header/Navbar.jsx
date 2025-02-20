@@ -47,7 +47,7 @@ function NavList() {
         className="p-1 font-medium"
       >
         <Link
-          to="/"
+          to="/image-gallery"
           className="flex items-center text-camp-background text-base transition-colors"
         >
           Gallery
