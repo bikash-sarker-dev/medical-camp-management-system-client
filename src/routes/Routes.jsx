@@ -13,6 +13,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DetailsLayout from "../layouts/DetailsLayout";
 import RootLayout from "../layouts/RootLayout";
 import AvailableCampPage from "../pages/AvailableCampPage";
+import BlogPage from "../pages/BlogPage";
 import DetailsPage from "../pages/DetailsPage";
 import ErrorPage from "../pages/ErrorPage";
 import GalleryPage from "../pages/GalleryPage";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/image-gallery",
         element: <GalleryPage />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogPage />,
       },
     ],
   },

@@ -60,7 +60,7 @@ function NavList() {
         className="p-1 font-medium"
       >
         <Link
-          to="/"
+          to="/blogs"
           className="flex items-center text-camp-background text-base transition-colors"
         >
           Blog
