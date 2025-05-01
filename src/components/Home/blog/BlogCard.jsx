@@ -22,7 +22,11 @@ const BlogCard = ({ blog }) => {
       </CardBody>
       <CardFooter className="pt-0">
         <a href="#" className="inline-block">
-          <Button size="sm" variant="text" className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="text"
+            className="flex items-center bg-camp-default gap-2"
+          >
             Learn More
             <svg
               xmlns="http://www.w3.org/2000/svg"
