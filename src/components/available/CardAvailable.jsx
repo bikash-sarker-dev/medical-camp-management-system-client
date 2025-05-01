@@ -40,7 +40,8 @@ export default function CardDefault({ camp }) {
             <span> {moment(DateAndTime).format("LL")}</span>
           </p>
           <p className="">
-            <span> CampFree : {CampFees}</span>
+            CampFree :{" "}
+            <span className="text-camp-primary font-semibold">${CampFees}</span>
           </p>
         </div>
 
