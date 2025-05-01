@@ -42,7 +42,7 @@ const Gallery = () => {
           >
             {data.map((image) => (
               <a
-                className="inline-block bg-camp-accent"
+                className="inline-block bg-camp-accent overflow-hidden"
                 key={image._id}
                 href={image.imageUrl}
               >
