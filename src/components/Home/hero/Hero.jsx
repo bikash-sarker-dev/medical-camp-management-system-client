@@ -38,7 +38,7 @@ export default function CarouselWithContent() {
                       to="/availableCamp"
                       size="lg"
                       color="white"
-                      className="px-14 bg-camp-accent text-white"
+                      className="px-10 bg-camp-accent text-white py-3 rounded-lg"
                     >
                       More Camps
                     </Link>
@@ -84,7 +84,7 @@ export default function CarouselWithContent() {
                   to="/availableCamp"
                   size="lg"
                   color="white"
-                  className="px-14 bg-camp-accent text-white"
+                  className="px-10 bg-camp-accent text-white py-3 rounded-lg "
                 >
                   More Camps
                 </Link>
