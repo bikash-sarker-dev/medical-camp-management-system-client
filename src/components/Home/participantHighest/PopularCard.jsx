@@ -21,14 +21,18 @@ export default function BookingCard({ camp }) {
   const word = Description.split(" ").slice(0, 15).join(" ");
 
   return (
-    <Card className="w-full  shadow-sm bg-camp-default">
+    <Card className="w-full  shadow-sm bg-camp-default group">
       <CardHeader floated={false} color="blue">
-        <img className="" src={Image} alt="ui/ux review check" />
+        <img
+          className="group-hover:scale-125 transition-all group-hover:duration-300"
+          src={Image}
+          alt="ui/ux review check"
+        />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
       </CardHeader>
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray" className="font-medium">
+          <Typography variant="h5" color="blue-gray" className="font-medium ">
             {CampName}
           </Typography>
           <Typography
