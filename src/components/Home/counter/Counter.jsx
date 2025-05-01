@@ -24,7 +24,9 @@ const Counter = () => {
               <h2 className="text-4xl font-extrabold my-2">
                 + <CountUp isCounting end={534} duration={8.2} />
               </h2>
-              <h3 className="text-camp-info text-xl">Happy Clients</h3>
+              <h3 className="text-camp-info text-xl font-medium">
+                Happy Clients
+              </h3>
             </div>
             <div className="border border-dotted text-center p-10">
               <div className="justify-center flex">
@@ -33,7 +35,7 @@ const Counter = () => {
               <h2 className="text-4xl font-extrabold my-2">
                 + <CountUp isCounting end={152} duration={8.2} />
               </h2>
-              <h3 className="text-camp-info text-xl">All Camps</h3>
+              <h3 className="text-camp-info text-xl font-medium ">All Camps</h3>
             </div>
             <div className="border border-dotted text-center p-10">
               <div className="justify-center flex">
@@ -42,7 +44,10 @@ const Counter = () => {
               <h2 className="text-4xl font-extrabold my-2">
                 + <CountUp isCounting end={3586} duration={8.2} />
               </h2>
-              <h3 className="text-camp-info text-xl"> Participant All</h3>
+              <h3 className="text-camp-info text-xl font-medium">
+                {" "}
+                Participant All
+              </h3>
             </div>
             <div className="border border-dotted text-center p-10">
               <div className="justify-center flex">
@@ -51,7 +56,9 @@ const Counter = () => {
               <h2 className="text-4xl font-extrabold my-2">
                 + <CountUp isCounting end={60} duration={8.2} />
               </h2>
-              <h3 className="text-camp-info text-xl">Awards Received</h3>
+              <h3 className="text-camp-info text-xl font-medium">
+                Awards Received
+              </h3>
             </div>
           </div>
         </div>
