@@ -1,5 +1,6 @@
-import { Button, Carousel, Typography } from "@material-tailwind/react";
+import { Carousel, Typography } from "@material-tailwind/react";
 import Lottie from "lottie-react";
+import { Link } from "react-router-dom";
 import HeroLottieFile from "../../../assets/lottifile/heroLottie.json";
 
 export default function CarouselWithContent() {
@@ -33,13 +34,14 @@ export default function CarouselWithContent() {
                     the next generation in the community.
                   </Typography>
                   <div className="flex gap-2 text-center justify-center lg:justify-start ">
-                    <Button
+                    <Link
+                      to="/availableCamp"
                       size="lg"
                       color="white"
                       className="px-14 bg-camp-accent text-white"
                     >
-                      Explore
-                    </Button>
+                      More Camps
+                    </Link>
                   </div>
                 </div>
                 <div className=" hidden lg:block">
@@ -78,13 +80,14 @@ export default function CarouselWithContent() {
                 nearby hospital saved his life.
               </Typography>
               <div className="flex justify-center gap-2">
-                <Button
+                <Link
+                  to="/availableCamp"
                   size="lg"
                   color="white"
                   className="px-14 bg-camp-accent text-white"
                 >
-                  Explore
-                </Button>
+                  More Camps
+                </Link>
               </div>
             </div>
           </div>

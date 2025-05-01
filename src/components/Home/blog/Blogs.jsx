@@ -29,7 +29,7 @@ const Blogs = () => {
           ))}
         </div>
         <div className="text-center my-12">
-          <Link to="/">
+          <Link to="/blogs">
             <Button className="text-lg font-poppins bg-camp-primary px-10">
               See All More
             </Button>
