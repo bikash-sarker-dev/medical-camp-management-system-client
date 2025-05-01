@@ -37,12 +37,12 @@ const GalleryPage = () => {
           >
             {data.map((image) => (
               <a
-                className="inline-block bg-camp-accent"
+                className="inline-block bg-camp-accent overflow-hidden"
                 key={image._id}
                 href={image.imageUrl}
               >
                 <img
-                  className="h-60 w-full"
+                  className="h-60 w-full hover:scale-125 transition-all hover:duration-300"
                   alt={`Image Id : ${image._id}`}
                   src={image.imageUrl}
                 />
