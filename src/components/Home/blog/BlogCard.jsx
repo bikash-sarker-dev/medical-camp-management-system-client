@@ -25,7 +25,7 @@ const BlogCard = ({ blog }) => {
           <Button
             size="sm"
             variant="text"
-            className="flex items-center bg-camp-default gap-2"
+            className="flex items-center bg-camp-default hover:bg-camp-info gap-2"
           >
             Learn More
             <svg
