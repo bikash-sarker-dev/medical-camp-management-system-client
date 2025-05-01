@@ -22,9 +22,13 @@ export default function CardDefault({ camp }) {
   } = camp || {};
   const word = Description.split(" ").slice(0, 16).join(" ");
   return (
-    <Card className="mt-6 bg-camp-default">
+    <Card className="mt-6 bg-camp-default group">
       <CardHeader color="blue" className="relative h-56">
-        <img src={Image} alt="card-image" />
+        <img
+          className="group-hover:scale-125 transition-all group-hover:duration-300"
+          src={Image}
+          alt="card-image"
+        />
       </CardHeader>
       <CardBody>
         <Typography variant="h5" color="blue" className="mb-2">
