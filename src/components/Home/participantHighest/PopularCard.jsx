@@ -33,7 +33,7 @@ export default function BookingCard({ camp }) {
           </Typography>
           <Typography
             color="blue-gray"
-            className="flex items-center gap-1.5 font-normal"
+            className="flex items-center gap-1.5 text-lg text-camp-primary font-semibold"
           >
             $ {CampFees}
           </Typography>
